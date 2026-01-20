@@ -5,7 +5,7 @@ import { Actions } from "./components/Actions";
 import Stats from "./components/Stats";
 import DripStats from "./components/DripStats";
 import { fmt } from "./utils/format";
-import Logo from "./assets/logo.svg";
+import Logo from "./assets/kdialogo.png";
 
 // Web3 & Telegram Imports
 import { useAccount } from "wagmi";

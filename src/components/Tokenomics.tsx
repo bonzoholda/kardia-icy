@@ -115,7 +115,7 @@ export default function Tokenomics() {
               Governance
             </p>
             <p className="text-xs text-slate-900 font-medium leading-relaxed">
-              Kardia is a fair-launch protocol. No pre-mine, no venture capital. The 11M supply 
+              Kardia is a fair-launch protocol. 100K initial minting for project development and community (to be released after total minted supply reaches 1M). No venture capital. The 99.09% supply 
               is distributed linearly through the Mining Hub to all community holders.
             </p>
           </div>

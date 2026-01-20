@@ -127,6 +127,7 @@ export default function App() {
               <ConnectWallet />
             </div>
 
+            {/* ───── FIXED STATS GRID ───── */}
             <div className="grid grid-cols-2 gap-4 text-sm">
               <Stat label="Miners Pool" value={minersPool.data} decimals={18} />
               <Stat label="Reward Pool" value={rewardPool.data} decimals={18} />
@@ -158,7 +159,6 @@ export default function App() {
           </div>
         ) : (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-             {/* Ready for new Tokenomics component */}
              <div className="glass-card p-10 text-center">
                 <p className="font-['Orbitron'] text-sky-900/40 text-xs font-bold tracking-widest uppercase">
                   Tokenomics Module Initializing...
@@ -171,13 +171,19 @@ export default function App() {
   );
 }
 
+/**
+ * ───── FIXED STAT COMPONENT ─────
+ * Corrected font structure and color for dark blue readability on orange.
+ */
 function Stat({ label, value, decimals }: { label: string; value?: bigint; decimals: number; }) {
   return (
     <div className="panel p-3 text-center border-white/20">
-      <div className="text-[9px] text-white/70 font-bold uppercase tracking-tighter">{label}</div>
-      <div className="mt-1 text-base font-bold text-white font-mono">
+      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-800/70 mb-1 font-['Orbitron']">
+        {label}
+      </p>
+      <p className="text-xl font-bold text-slate-900 font-['Inter']">
         {value !== undefined ? fmt(value, decimals, 2) : "—"}
-      </div>
+      </p>
     </div>
   );
 }

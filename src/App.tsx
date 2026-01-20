@@ -6,6 +6,7 @@ import Stats from "./components/Stats";
 import DripStats from "./components/DripStats";
 import { fmt } from "./utils/format";
 import Logo from "./assets/kdialogo.png";
+import Tokenomics from "./components/Tokenomics"; // Import confirmed
 
 // Web3 & Telegram Imports
 import { useAccount } from "wagmi";
@@ -92,7 +93,7 @@ export default function App() {
       </div>
 
       <div className="max-w-md mx-auto space-y-6">
-        {/* ───── TAB NAVIGATION (THEME MATCHED) ───── */}
+        {/* ───── TAB NAVIGATION ───── */}
         <div className="flex bg-white/20 p-1 rounded-xl border border-white/40 shadow-inner backdrop-blur-md">
           <button
             onClick={() => toggleTab("mining")}
@@ -116,7 +117,7 @@ export default function App() {
           </button>
         </div>
 
-        {/* ───── Content Rendering ───── */}
+        {/* ───── CONTENT RENDERING ───── */}
         {activeTab === "mining" ? (
           <div className="glass-card p-6 space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <h3 className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-sky-800/40 font-['Orbitron']">
@@ -127,7 +128,6 @@ export default function App() {
               <ConnectWallet />
             </div>
 
-            {/* ───── FIXED STATS GRID ───── */}
             <div className="grid grid-cols-2 gap-4 text-sm">
               <Stat label="Miners Pool" value={minersPool.data} decimals={18} />
               <Stat label="Reward Pool" value={rewardPool.data} decimals={18} />
@@ -158,13 +158,8 @@ export default function App() {
             )}
           </div>
         ) : (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-             <div className="glass-card p-10 text-center">
-                <p className="font-['Orbitron'] text-sky-900/40 text-xs font-bold tracking-widest uppercase">
-                  Tokenomics Module Initializing...
-                </p>
-             </div>
-          </div>
+          /* FIXED: Component call placed here, replacing placeholder */
+          <Tokenomics />
         )}
       </div>
     </div>
@@ -173,7 +168,6 @@ export default function App() {
 
 /**
  * ───── FIXED STAT COMPONENT ─────
- * Corrected font structure and color for dark blue readability on orange.
  */
 function Stat({ label, value, decimals }: { label: string; value?: bigint; decimals: number; }) {
   return (

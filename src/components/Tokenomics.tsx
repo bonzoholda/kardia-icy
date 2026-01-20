@@ -1,5 +1,5 @@
 import { FileText, Flame, Coins, ShieldCheck, Zap } from "lucide-react";
-import HeartPaper from "../assets/Kardia.pdf?url";
+import HeartPaper from "../assets/Kardia.pdf";
 
 export default function Tokenomics() {
   return (

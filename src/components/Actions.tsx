@@ -101,7 +101,7 @@ export function Actions() {
   };
 
   if (!address) return (
-    <div className="glass-card p-10 text-center font-bold text-sky-700/50 uppercase text-[10px] tracking-widest font-['Orbitron']">
+    <div className="glass-card p-10 text-center font-bold text-white uppercase text-[10px] tracking-widest font-['Orbitron']">
       Connect Wallet
     </div>
   );
@@ -110,17 +110,18 @@ export function Actions() {
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       
       {/* 1. ACQUIRE POWER */}
-      <div className="glass-card p-6 space-y-4">
+      <div className="panel p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h4 className="panel-title font-['Orbitron']">Acquire Power</h4>
+          <h4 className="panel-title font-['Orbitron'] text-white">Acquire Power</h4>
           <div className="text-right">
-            <span className="text-[9px] text-sky-800/60 uppercase font-bold tracking-widest block">USDT Balance</span>
-            <span className="text-xs font-mono text-[#f7931a] font-bold">
+            <span className="text-[9px] text-white/80 uppercase font-bold tracking-widest block">USDT Balance</span>
+            {/* White font for balance on orange card */}
+            <span className="text-xs font-mono text-white font-bold">
               {usdtBalance ? Number(usdtBalance.formatted).toLocaleString('en-US', { minimumFractionDigits: 2 }) : "0.00"}
             </span>
           </div>
         </div>
-        <input className="input h-14" type="number" placeholder="USDT Amount" value={puAmount} onChange={(e) => setPuAmount(e.target.value)} />
+        <input className="input h-14 bg-white/20 border-white/30 text-white placeholder:text-white/50" type="number" placeholder="USDT Amount" value={puAmount} onChange={(e) => setPuAmount(e.target.value)} />
         <button className="btn h-14" disabled={!puAmount || isBroadcasting} onClick={handleAcquirePU}>
           {statusMsg || "Acquire Power Units"}
         </button>
@@ -128,17 +129,18 @@ export function Actions() {
       </div>
 
       {/* 2. STAKE KDIA */}
-      <div className="panel p-6 space-y-4 border-white/20">
+      <div className="panel p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h4 className="panel-title font-['Orbitron']">Stake $KDIA</h4>
+          <h4 className="panel-title font-['Orbitron'] text-white">Stake $KDIA</h4>
           <div className="text-right">
-            <span className="text-[9px] text-sky-800/60 uppercase font-bold tracking-widest block">Available KDIA</span>
-            <span className="text-xs font-mono text-[#f7931a] font-bold">
+            <span className="text-[9px] text-white/80 uppercase font-bold tracking-widest block">Available KDIA</span>
+            {/* White font for balance on orange card */}
+            <span className="text-xs font-mono text-white font-bold">
               {kdiaBalance ? Number(kdiaBalance.formatted).toLocaleString('en-US', { minimumFractionDigits: 2 }) : "0.00"}
             </span>
           </div>
         </div>
-        <input className="input h-14 bg-white/10" type="number" placeholder="KDIA Amount" value={stakeAmount} onChange={(e) => setStakeAmount(e.target.value)} />
+        <input className="input h-14 bg-white/20 border-white/30 text-white placeholder:text-white/50" type="number" placeholder="KDIA Amount" value={stakeAmount} onChange={(e) => setStakeAmount(e.target.value)} />
         <button className="btn h-14 w-full" disabled={!stakeAmount || stakeSMOS.isPending} onClick={handleStake}>
           {stakeSMOS.isPending ? "STAKING..." : "Stake KDIA"}
         </button>
@@ -155,7 +157,7 @@ export function Actions() {
           {claimMiner.isPending ? "SYNCHRONIZING..." : "HARVEST MINING REWARDS"}
         </button>
         <TxStatus hash={claimTx} />
-        <p className="text-[8px] text-center text-sky-900/40 font-bold uppercase tracking-[0.2em] mt-1">
+        <p className="text-[8px] text-center text-sky-900/60 font-bold uppercase tracking-[0.2em] mt-1">
           * Harvesting does not affect your 7-day stake lock duration.
         </p>
       </div>

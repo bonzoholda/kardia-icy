@@ -172,11 +172,10 @@ export default function App() {
 
 function Stat({ label, value, decimals }: { label: string; value?: bigint; decimals: number; }) {
   return (
-    /* CHANGED: From bg-black/70 to a frosty bg-white/40 */
-    <div className="rounded-xl bg-white/40 border border-white/50 backdrop-blur-sm p-3 text-center">
-      {/* CHANGED: Text color to sky blue */}
-      <div className="text-xs text-sky-600 font-bold uppercase tracking-tighter">{label}</div>
-      <div className="mt-1 text-base font-semibold text-sky-900">
+    /* CHANGED: bg-slate-900/10 provides a cooler, darker "ice" tint */
+    <div className="rounded-xl bg-slate-900/10 border border-white/30 backdrop-blur-md p-3 text-center">
+      <div className="text-xs text-sky-800/70 font-bold uppercase tracking-tighter">{label}</div>
+      <div className="mt-1 text-base font-semibold text-[#f7931a]"> {/* Bitcoin Orange */}
         {value !== undefined ? fmt(value, decimals, 2) : "—"}
       </div>
     </div>

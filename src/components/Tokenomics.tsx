@@ -1,5 +1,5 @@
 import { FileText, Flame, Coins, ShieldCheck, Zap } from "lucide-react";
-import HeartPaper from "../assets/Kardia.pdf";
+import HeartPaper from "../assets/Kardia.pdf?url";
 
 export default function Tokenomics() {
   return (
@@ -24,17 +24,17 @@ export default function Tokenomics() {
         </div>
       </div>
 
-      {/* 2. MINTING & BURNING MECHANICS */}
+      {/* 2. EMISSION FRAMEWORK */}
       <div className="glass-card p-6 space-y-5">
         <div className="flex items-center gap-3 border-b border-sky-900/10 pb-4">
           <Flame className="text-[#f7931a] w-6 h-6" />
           <h3 className="text-sm font-bold tracking-[0.2em] text-sky-900 font-['Orbitron'] uppercase">
-            Active Emission Logic
+            Emission Framework
           </h3>
         </div>
 
         <div className="space-y-5">
-          {/* PASSIVE LOGIC */}
+          {/* PASSIVE EMISSION */}
           <div className="flex gap-4">
             <div className="bg-blue-100 p-3 rounded-xl h-fit">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -48,8 +48,7 @@ export default function Tokenomics() {
             </div>
           </div>
 
-        
-        <div className="space-y-4">
+          {/* ACTIVE BURN */}
           <div className="flex gap-4">
             <div className="bg-orange-100 p-3 rounded-xl h-fit">
               <Zap className="text-[#f7931a] w-5 h-5" />
@@ -63,6 +62,7 @@ export default function Tokenomics() {
             </div>
           </div>
 
+          {/* TRIGGER BOUNTY */}
           <div className="flex gap-4">
             <div className="bg-sky-100 p-3 rounded-xl h-fit">
               <Coins className="text-sky-600 w-5 h-5" />

@@ -100,6 +100,9 @@ export function Actions() {
     }
   };
 
+  // PREMIUM WHITE BUTTON CLASS
+  const premiumBtn = "w-full h-14 rounded-xl bg-white text-black hover:bg-gray-100 transition-all font-bold text-[12px] tracking-[0.1em] shadow-lg active:scale-95 border border-white/60 uppercase disabled:opacity-50 disabled:active:scale-100 disabled:hover:bg-white cursor-pointer";
+
   if (!address) return (
     <div className="glass-card p-10 text-center font-bold text-sky-900 uppercase text-[10px] tracking-widest font-['Orbitron']">
       Connect Wallet
@@ -112,19 +115,18 @@ export function Actions() {
       {/* 1. ACQUIRE POWER */}
       <div className="panel p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h4 className="panel-title font-['Orbitron'] text-slate-900 !mb-0">Acquire Power</h4>
+          <h4 className="panel-title font-['Orbitron'] text-sky-900 !mb-0">Acquire Power</h4>
           <div className="text-right">
-            <span className="text-[9px] text-slate-800/60 uppercase font-bold tracking-widest block">USDT Balance</span>
-            <span className="text-xs font-mono text-slate-900 font-bold">
+            <span className="text-[9px] text-sky-900/60 uppercase font-bold tracking-widest block">USDT Balance</span>
+            <span className="text-xs font-mono text-sky-950 font-bold">
               {usdtBalance ? Number(usdtBalance.formatted).toLocaleString('en-US', { minimumFractionDigits: 2 }) : "0.00"}
             </span>
           </div>
         </div>
         
-        {/* FIXED: Added w-full and px-4 to ensure no overflow */}
         <div className="relative w-full">
           <input 
-            className="w-full h-14 bg-white/40 border border-slate-900/10 rounded-xl px-4 text-slate-900 placeholder:text-slate-900/40 outline-none focus:border-slate-900/30 transition-all font-bold" 
+            className="w-full h-14 bg-white/40 border border-sky-900/10 rounded-xl px-4 text-sky-950 placeholder:text-sky-900/40 outline-none focus:border-sky-900/30 transition-all font-bold" 
             type="number" 
             placeholder="0.00" 
             value={puAmount} 
@@ -132,7 +134,7 @@ export function Actions() {
           />
         </div>
 
-        <button className="btn h-14" disabled={!puAmount || isBroadcasting} onClick={handleAcquirePU}>
+        <button className={premiumBtn} disabled={!puAmount || isBroadcasting} onClick={handleAcquirePU}>
           {statusMsg || "Acquire Power Units"}
         </button>
         <TxStatus hash={puTx} />
@@ -141,19 +143,18 @@ export function Actions() {
       {/* 2. STAKE KDIA */}
       <div className="panel p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h4 className="panel-title font-['Orbitron'] text-slate-900 !mb-0">Stake $KDIA</h4>
+          <h4 className="panel-title font-['Orbitron'] text-sky-900 !mb-0">Stake $KDIA</h4>
           <div className="text-right">
-            <span className="text-[9px] text-slate-800/60 uppercase font-bold tracking-widest block">Available KDIA</span>
-            <span className="text-xs font-mono text-slate-900 font-bold">
+            <span className="text-[9px] text-sky-900/60 uppercase font-bold tracking-widest block">Available KDIA</span>
+            <span className="text-xs font-mono text-sky-950 font-bold">
               {kdiaBalance ? Number(kdiaBalance.formatted).toLocaleString('en-US', { minimumFractionDigits: 2 }) : "0.00"}
             </span>
           </div>
         </div>
 
-        {/* FIXED: Added w-full and px-4 to ensure no overflow */}
         <div className="relative w-full">
           <input 
-            className="w-full h-14 bg-white/40 border border-slate-900/10 rounded-xl px-4 text-slate-900 placeholder:text-slate-900/40 outline-none focus:border-slate-900/30 transition-all font-bold" 
+            className="w-full h-14 bg-white/40 border border-sky-900/10 rounded-xl px-4 text-sky-950 placeholder:text-sky-900/40 outline-none focus:border-sky-900/30 transition-all font-bold" 
             type="number" 
             placeholder="0.00" 
             value={stakeAmount} 
@@ -161,16 +162,16 @@ export function Actions() {
           />
         </div>
 
-        <button className="btn h-14 w-full" disabled={!stakeAmount || stakeSMOS.isPending} onClick={handleStake}>
+        <button className={premiumBtn} disabled={!stakeAmount || stakeSMOS.isPending} onClick={handleStake}>
           {stakeSMOS.isPending ? "STAKING..." : "Stake KDIA"}
         </button>
         <TxStatus hash={stakeTx} />
       </div>
 
       {/* 3. HARVEST REWARDS */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <button 
-          className="btn h-14 w-full"
+          className={premiumBtn}
           disabled={claimMiner.isPending} 
           onClick={handleClaim}
         >

@@ -11,7 +11,6 @@ import Logo from "./assets/kdialogo.png";
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { TokenApprovalGuard } from "./components/TokenApprovalGuard";
-import { SwapTrading } from "./components/SwapTrading";
 
 /**
  * CONFIGURATION
@@ -19,11 +18,10 @@ import { SwapTrading } from "./components/SwapTrading";
 const CONTROLLER_ADDRESS = import.meta.env.VITE_CONTROLLER_ADDRESS as `0x${string}` | undefined;
 const MOCK_USDT_ADDRESS = import.meta.env.VITE_USDT_ADDRESS as `0x${string}` | undefined;
 const KDIA_ADDRESS = import.meta.env.VITE_KDIA_ADDRESS as `0x${string}` | undefined;
-const WBTC_ADDRESS = import.meta.env.VITE_WBTC_ADDRESS as `0x${string}` | undefined;
 
 export default function App() {
   const { minersPool, rewardPool, totalPU } = useController();
-  const [activeTab, setActiveTab] = useState<"mining" | "trade">("mining");
+  const [activeTab, setActiveTab] = useState<"mining" | "tokenomics">("mining");
   
   // Web3 Hooks
   const { isConnected } = useAccount();
@@ -59,7 +57,7 @@ export default function App() {
     }
   }, [tg, isConnected, open]);
 
-  const toggleTab = (tab: "mining" | "trade") => {
+  const toggleTab = (tab: "mining" | "tokenomics") => {
     setActiveTab(tab);
     if (tg?.HapticFeedback) {
       tg.HapticFeedback.impactOccurred("medium");
@@ -67,7 +65,6 @@ export default function App() {
   };
 
   return (   
-    /* CHANGED: Removed bg-black to allow index.css background to show */
     <div className="min-h-screen bg-transparent p-4 pb-24 md:p-6 relative">
       
       {/* ───── HOME LOGO NAVIGATION ───── */}
@@ -76,8 +73,7 @@ export default function App() {
           href="https://kardiatoken.wordpress.com/" 
           target="_blank" 
           rel="noopener noreferrer"
-          /* CHANGED: Swapped red-950/red-500 for sky/white icy theme */
-          className="flex items-center justify-center w-10 h-10 rounded-xl bg-sky-100/40 border border-white/50 backdrop-blur-md hover:scale-110 active:scale-95 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+          className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/40 border border-white/60 backdrop-blur-md hover:scale-110 active:scale-95 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.3)]"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -96,36 +92,35 @@ export default function App() {
       </div>
 
       <div className="max-w-md mx-auto space-y-6">
-        {/* ───── TAB NAVIGATION ───── */}
-        {/* CHANGED: Background from red-950 to sky-100/blue-white */}
-        <div className="flex bg-sky-100/20 p-1 rounded-xl border border-white/40 shadow-inner backdrop-blur-md">
+        {/* ───── TAB NAVIGATION (THEME MATCHED) ───── */}
+        <div className="flex bg-white/20 p-1 rounded-xl border border-white/40 shadow-inner backdrop-blur-md">
           <button
             onClick={() => toggleTab("mining")}
             className={`flex-1 py-3 rounded-lg text-xs font-bold font-['Orbitron'] tracking-widest transition-all duration-300 ${
               activeTab === "mining" 
-                ? "bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-[0_0_20px_rgba(14,165,233,0.3)]" 
-                : "text-sky-700/60 hover:text-sky-600 hover:bg-white/10"
+                ? "bg-gradient-to-r from-[#f7931a] to-[#e88300] text-white shadow-[0_0_15px_rgba(247,147,26,0.4)]" 
+                : "text-sky-900/40 hover:text-sky-900 hover:bg-white/10"
             }`}
           >
             MINING HUB
           </button>
           <button
-            onClick={() => toggleTab("trade")}
+            onClick={() => toggleTab("tokenomics")}
             className={`flex-1 py-3 rounded-lg text-xs font-bold font-['Orbitron'] tracking-widest transition-all duration-300 ${
-              activeTab === "trade" 
-                ? "bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-[0_0_20px_rgba(14,165,233,0.3)]" 
-                : "text-sky-700/60 hover:text-sky-600 hover:bg-white/10"
+              activeTab === "tokenomics" 
+                ? "bg-gradient-to-r from-[#f7931a] to-[#e88300] text-white shadow-[0_0_15px_rgba(247,147,26,0.4)]" 
+                : "text-sky-900/40 hover:text-sky-900 hover:bg-white/10"
             }`}
           >
-            TRADE KDIA
+            TOKENOMICS
           </button>
         </div>
 
         {/* ───── Content Rendering ───── */}
         {activeTab === "mining" ? (
           <div className="glass-card p-6 space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <h3 className="text-center text-sm text-sky-800/70">
-              The Heartbeat of Perpetual DeFi
+            <h3 className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-sky-800/40 font-['Orbitron']">
+              Perpetual Emission Protocol
             </h3>
 
             <div className="flex justify-center">
@@ -135,13 +130,14 @@ export default function App() {
             <div className="grid grid-cols-2 gap-4 text-sm">
               <Stat label="Miners Pool" value={minersPool.data} decimals={18} />
               <Stat label="Reward Pool" value={rewardPool.data} decimals={18} />
-              <Stat label="Total PU" value={totalPU.data} decimals={18} />
+              <div className="col-span-2">
+                <Stat label="Total Power Units (Network Share)" value={totalPU.data} decimals={18} />
+              </div>
             </div>
 
             <Stats />
             <DripStats />
 
-            {/* CHANGED: Border color to match icy theme */}
             <hr className="border-sky-500/10" />
 
             {CONTROLLER_ADDRESS && (
@@ -162,7 +158,12 @@ export default function App() {
           </div>
         ) : (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <SwapTrading />
+             {/* Ready for new Tokenomics component */}
+             <div className="glass-card p-10 text-center">
+                <p className="font-['Orbitron'] text-sky-900/40 text-xs font-bold tracking-widest uppercase">
+                  Tokenomics Module Initializing...
+                </p>
+             </div>
           </div>
         )}
       </div>
@@ -172,10 +173,9 @@ export default function App() {
 
 function Stat({ label, value, decimals }: { label: string; value?: bigint; decimals: number; }) {
   return (
-    /* CHANGED: bg-slate-900/10 provides a cooler, darker "ice" tint */
-    <div className="rounded-xl bg-slate-900/10 border border-white/30 backdrop-blur-md p-3 text-center">
-      <div className="text-xs text-sky-800/70 font-bold uppercase tracking-tighter">{label}</div>
-      <div className="mt-1 text-base font-semibold text-[#f7931a]"> {/* Bitcoin Orange */}
+    <div className="panel p-3 text-center border-white/20">
+      <div className="text-[9px] text-white/70 font-bold uppercase tracking-tighter">{label}</div>
+      <div className="mt-1 text-base font-bold text-white font-mono">
         {value !== undefined ? fmt(value, decimals, 2) : "—"}
       </div>
     </div>

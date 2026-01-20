@@ -84,35 +84,38 @@ export function SwapTrading() {
   return (
     <div className="glass-card p-6 space-y-6 animate-in fade-in duration-500">
       {/* HEADER SECTION */}
-      <div className="flex justify-between items-center border-b border-white/10 pb-4">
+      <div className="flex justify-between items-center border-b border-sky-900/10 pb-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tighter text-white font-['Orbitron'] uppercase">Market Data</h2>
+          {/* FONT COLOR: Dark Blue */}
+          <h2 className="text-xl font-bold tracking-tighter text-sky-900 font-['Orbitron'] uppercase">Market Data</h2>
           <div className="flex items-center gap-2 mt-1">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#f7931a]"></span>
             </span>
-            <p className="text-[10px] font-bold text-green-500/80 uppercase tracking-widest">Live Oracle Price</p>
+            {/* FONT COLOR: Bitcoin Orange */}
+            <p className="text-[10px] font-bold text-[#f7931a] uppercase tracking-widest">Live Oracle Price</p>
           </div>
         </div>
-        <TrendingUp className="text-white/20 w-8 h-8" />
+        <TrendingUp className="text-sky-900/20 w-8 h-8" />
       </div>
 
       {/* PRICE DISPLAY */}
-      <div className="panel py-8 bg-gradient-to-br from-white/[0.05] to-transparent border-white/10">
-        <p className="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">
+      <div className="panel py-8 bg-gradient-to-br from-white/[0.4] to-transparent border-white/60">
+        <p className="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-sky-900/60 mb-2">
           KDIA / USDT
         </p>
         <div className="flex items-center justify-center gap-3">
-          <span className="text-4xl md:text-5xl font-black text-white font-['Inter'] tracking-tighter">
+          <span className="text-4xl md:text-5xl font-black text-sky-950 font-['Inter'] tracking-tighter">
             ${kdiaPriceUSDT}
           </span>
         </div>
       </div>
 
       {/* INFO FOOTER */}
-      <div className="bg-blue-500/5 rounded-xl p-4 border border-blue-500/10">
-        <p className="text-[11px] text-blue-200/70 leading-relaxed text-center font-medium">
+      <div className="bg-sky-900/5 rounded-xl p-4 border border-sky-900/10">
+        {/* FONT COLOR: Dark Blue */}
+        <p className="text-[11px] text-sky-900/80 leading-relaxed text-center font-medium">
           Swap functionality is handled via the official PancakeSwap Liquidity Pool to ensure 
           the best price execution and lowest slippage.
         </p>
@@ -124,7 +127,7 @@ export function SwapTrading() {
           href={pancakeSwapLink} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-white text-black hover:bg-gray-200 transition-all font-bold text-[12px] tracking-[0.1em] shadow-xl active:scale-[0.98]"
+          className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-white text-black hover:bg-gray-100 transition-all font-bold text-[12px] tracking-[0.1em] shadow-lg active:scale-[0.98] border border-white/60"
         >
           TRADE ON PANCAKESWAP
           <ExternalLink size={16} />

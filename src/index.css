@@ -30,6 +30,13 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  background-repeat: no-repeat; 
+}
+
+/* This ensures the React/Vue root container doesn't have its own background */
+#root, #__next {
+  background: transparent !important;
+  min-height: 100vh;
 }
 
 /* Telegram Mobile Overrides */

@@ -106,18 +106,22 @@ export default function Tokenomics() {
         </div>
       </div>
 
-      {/* 4. DOCUMENTATION LINK */}
-      <div className="flex justify-center pt-4">
-        <a 
-          href="https://kardiatoken.wordpress.com/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-8 py-4 rounded-xl bg-sky-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-sky-950 transition-all shadow-lg active:scale-95"
-        >
-          <FileText size={16} />
-          Read Kardia HeartPaper
-        </a>
+      {/* 3. SECURITY & TRUST */}
+      <div className="panel p-6 border-white/20">
+        <div className="flex items-start gap-4">
+          <ShieldCheck className="text-slate-900 w-8 h-8" />
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-800/70 mb-1 font-['Orbitron']">
+              Governance
+            </p>
+            <p className="text-xs text-slate-900 font-medium leading-relaxed">
+              Kardia is a fair-launch protocol. No pre-mine, no venture capital. The 11M supply 
+              is distributed linearly through the Mining Hub to all community holders.
+            </p>
+          </div>
+        </div>
       </div>
+      
     </div>
   );
 }

@@ -6,7 +6,8 @@ import Stats from "./components/Stats";
 import DripStats from "./components/DripStats";
 import { fmt } from "./utils/format";
 import Logo from "./assets/kdialogo.png";
-import Tokenomics from "./components/Tokenomics"; // Import confirmed
+import Tokenomics from "./components/Tokenomics";
+import { SwapTrading } from "./components/SwapTrading"; // Added Import
 
 // Web3 & Telegram Imports
 import { useAccount } from "wagmi";
@@ -119,46 +120,51 @@ export default function App() {
 
         {/* ───── CONTENT RENDERING ───── */}
         {activeTab === "mining" ? (
-          <div className="glass-card p-6 space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <h3 className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-sky-800/40 font-['Orbitron']">
-              Perpetual Emission Protocol
-            </h3>
+          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {/* MINING STATS CARD */}
+            <div className="glass-card p-6 space-y-6">
+              <h3 className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-sky-800/40 font-['Orbitron']">
+                Perpetual Emission Protocol
+              </h3>
 
-            <div className="flex justify-center">
-              <ConnectWallet />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <Stat label="Miners Pool" value={minersPool.data} decimals={18} />
-              <Stat label="Reward Pool" value={rewardPool.data} decimals={18} />
-              <div className="col-span-2">
-                <Stat label="Total Power Units (Network Share)" value={totalPU.data} decimals={18} />
+              <div className="flex justify-center">
+                <ConnectWallet />
               </div>
+
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <Stat label="Miners Pool" value={minersPool.data} decimals={18} />
+                <Stat label="Reward Pool" value={rewardPool.data} decimals={18} />
+                <div className="col-span-2">
+                  <Stat label="Total Power Units (Network Share)" value={totalPU.data} decimals={18} />
+                </div>
+              </div>
+
+              <Stats />
+              <DripStats />
+
+              <hr className="border-sky-500/10" />
+
+              {CONTROLLER_ADDRESS && (
+                <TokenApprovalGuard 
+                  tokenAddress={MOCK_USDT_ADDRESS}
+                  spenderAddress={CONTROLLER_ADDRESS}
+                  amountRequired="0.1" 
+                >
+                  <TokenApprovalGuard
+                    tokenAddress={KDIA_ADDRESS}
+                    spenderAddress={CONTROLLER_ADDRESS}
+                    amountRequired="0.1"
+                  >
+                    <Actions />
+                  </TokenApprovalGuard>
+                </TokenApprovalGuard> 
+              )}
             </div>
 
-            <Stats />
-            <DripStats />
-
-            <hr className="border-sky-500/10" />
-
-            {CONTROLLER_ADDRESS && (
-              <TokenApprovalGuard 
-                tokenAddress={MOCK_USDT_ADDRESS}
-                spenderAddress={CONTROLLER_ADDRESS}
-                amountRequired="0.1" 
-              >
-                <TokenApprovalGuard
-                  tokenAddress={KDIA_ADDRESS}
-                  spenderAddress={CONTROLLER_ADDRESS}
-                  amountRequired="0.1"
-                >
-                  <Actions />
-                </TokenApprovalGuard>
-              </TokenApprovalGuard> 
-            )}
+            {/* SWAP HUB COMPONENT (Placed outside the glass-card for better visual separation or inside if preferred) */}
+            <SwapTrading />
           </div>
         ) : (
-          /* FIXED: Component call placed here, replacing placeholder */
           <Tokenomics />
         )}
       </div>

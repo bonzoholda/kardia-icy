@@ -39,22 +39,50 @@ body {
 }
 
 /* ============================================================
-   FUTURISTIC COMPONENTS (ICY GLASSMORPISM)
+   FUTURISTIC COMPONENTS (DEEP GLACIER GLASS)
 ============================================================ */
 
 .glass-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%);
-  backdrop-filter: blur(15px) saturate(120%);
-  -webkit-backdrop-filter: blur(15px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  /* CHANGED: Swapped light white for a deeper frosted blue tint */
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.15) 0%,   /* Slate-900 at low opacity */
+    rgba(30, 41, 59, 0.05) 100%   /* Slate-800 at very low opacity */
+  );
+  
+  /* Increased blur slightly for better separation */
+  backdrop-filter: blur(25px) saturate(140%);
+  -webkit-backdrop-filter: blur(25px) saturate(140%);
+  
+  /* Soft white border to define the edge against the image */
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 1.5rem;
+  
+  /* SHADOW: Added a slight dark outer glow to create depth on light backgrounds */
   box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.05),            
-    inset 0 1px 2px rgba(255, 255, 255, 0.8);   
+    0 15px 35px rgba(15, 23, 42, 0.1),            
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);   
     
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+}
+
+.glass-card:hover {
+  /* Slightly more opaque on hover */
+  background: rgba(15, 23, 42, 0.2);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 20px 40px rgba(15, 23, 42, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   STAT BOXES (INSIDE APP.TSX)
+================================ */
+/* Update the .panel or the Stat div logic to match this darker tone */
+.panel {
+  @apply rounded-2xl bg-slate-900/10 backdrop-blur-xl border border-white/30 p-5 transition-all;
 }
 
 /* ============================================================

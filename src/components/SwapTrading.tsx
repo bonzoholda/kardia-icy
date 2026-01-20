@@ -1,16 +1,9 @@
-import { useState, useEffect, useMemo } from "react";
-import {
-  useAccount,
-  useBalance,
-  useReadContract,
-  useWriteContract,
-  useWaitForTransactionReceipt,
-} from "wagmi";
-import { parseUnits, formatUnits } from "viem";
-import { TokenApprovalGuard } from "./TokenApprovalGuard";
-import { TxStatus } from "./TxStatus";
+import { useMemo } from "react";
+import { useReadContract } from "wagmi";
+import { formatUnits } from "viem";
+import { ExternalLink, TrendingUp } from "lucide-react";
 
-// Environment variables and constants
+// Constants from environment
 const ROUTER_ADDRESS = import.meta.env.VITE_ROUTER_ADDRESS as `0x${string}`;
 const USDT_ADDRESS = import.meta.env.VITE_USDT_ADDRESS as `0x${string}`;
 const KDIA_ADDRESS = import.meta.env.VITE_KDIA_ADDRESS as `0x${string}`;
@@ -50,45 +43,10 @@ const ROUTER_ABI = [
     stateMutability: "view",
     type: "function",
   },
-  {
-    inputs: [
-      { name: "amountIn", type: "uint256" },
-      { name: "amountOutMin", type: "uint256" },
-      { name: "path", type: "address[]" },
-      { name: "to", type: "address" },
-      { name: "deadline", type: "uint256" },
-    ],
-    name: "swapExactTokensForTokensSupportingFeeOnTransferTokens",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
 ] as const;
 
 export function SwapTrading() {
-  const { address } = useAccount();
-  const [isBuy, setIsBuy] = useState(true);
-  const [amountIn, setAmountIn] = useState("");
-  const [txHash, setTxHash] = useState<`0x${string}`>();
-
-  const tokenIn = isBuy ? USDT_ADDRESS : KDIA_ADDRESS;
-
-  // Optimized Path Logic
-  const smartPath = useMemo(() => {
-    return isBuy 
-      ? [USDT_ADDRESS, WBTC_ADDRESS, KDIA_ADDRESS] as const
-      : [KDIA_ADDRESS, WBTC_ADDRESS, USDT_ADDRESS] as const;
-  }, [isBuy]);
-
-  const fallbackPath = useMemo(() => {
-    return isBuy 
-      ? [USDT_ADDRESS, KDIA_ADDRESS] as const
-      : [KDIA_ADDRESS, USDT_ADDRESS] as const;
-  }, [isBuy]);
-
-  const { data: usdtData, refetch: refetchUsdt } = useBalance({ address, token: USDT_ADDRESS });
-  const { data: kdiaData, refetch: refetchKdia } = useBalance({ address, token: KDIA_ADDRESS });
-
+  // 1. PRICE FETCHING LOGIC
   const { data: controllerPrice } = useReadContract({
     address: CONTROLLER_ADDRESS,
     abi: CONTROLLER_ABI,
@@ -105,159 +63,73 @@ export function SwapTrading() {
     address: ROUTER_ADDRESS,
     abi: ROUTER_ABI,
     functionName: "getAmountsOut",
-    args: [parseUnits("1", 18), [WBTC_ADDRESS, USDT_ADDRESS]],
+    args: [BigInt(10 ** 18), [WBTC_ADDRESS, USDT_ADDRESS]],
   });
 
   const kdiaPriceUSDT = useMemo(() => {
     if (controllerPrice && controllerPrice > 0n) return Number(formatUnits(controllerPrice, 18)).toFixed(4);
-    if (!reserves || !btcToUsdtData) return "0.00";
+    if (!reserves || !btcToUsdtData) return "0.0000";
     try {
       const reserveBTCB = reserves[0];
       const reserveKDIA = reserves[1];
       const btcPriceInUsdt = btcToUsdtData[1];
-      if (reserveKDIA === 0n) return "0.00";
+      if (reserveKDIA === 0n) return "0.0000";
       const priceScaled = (reserveBTCB * btcPriceInUsdt) / reserveKDIA;
       return Number(formatUnits(priceScaled, 18)).toFixed(4);
-    } catch (e) { return "0.00"; }
+    } catch (e) { return "0.0000"; }
   }, [reserves, btcToUsdtData, controllerPrice]);
 
-  const amountInBI = useMemo(() => {
-    if (!amountIn || isNaN(Number(amountIn)) || Number(amountIn) <= 0) return 0n;
-    try { return parseUnits(amountIn, 18); } catch { return 0n; }
-  }, [amountIn]);
-
-  // Primary 3-Hop Quote
-  const { data: quoteData } = useReadContract({
-    address: ROUTER_ADDRESS,
-    abi: ROUTER_ABI,
-    functionName: "getAmountsOut",
-    args: amountInBI > 0n ? [amountInBI, [...smartPath]] : undefined,
-    query: { 
-        enabled: amountInBI > 0n,
-        refetchInterval: 5000 
-    }
-  });
-
-  // Secondary 2-Hop Fallback (In case WBTC liquidity is the issue)
-  const { data: fallbackQuoteData } = useReadContract({
-    address: ROUTER_ADDRESS,
-    abi: ROUTER_ABI,
-    functionName: "getAmountsOut",
-    args: (amountInBI > 0n && !quoteData) ? [amountInBI, [...fallbackPath]] : undefined,
-    query: { enabled: amountInBI > 0n && !quoteData }
-  });
-
-  const finalQuote = quoteData || fallbackQuoteData;
-  const estimatedOutRaw = finalQuote ? finalQuote[finalQuote.length - 1] : 0n;
-  const estimatedOut = estimatedOutRaw ? Number(formatUnits(estimatedOutRaw, 18)).toFixed(6) : "0.000000";
-
-  const { writeContractAsync, isPending } = useWriteContract();
-  const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash: txHash });
-
-  const getPancakeSwapLink = () => {
-    return `https://pancakeswap.finance/swap?inputCurrency=${USDT_ADDRESS}&outputCurrency=${KDIA_ADDRESS}&chainId=56`;
-  };
-  
-  useEffect(() => {
-    if (isSuccess) {
-      refetchUsdt(); refetchKdia();
-      setAmountIn(""); setTxHash(undefined);
-    }
-  }, [isSuccess]);
-
-  const handleSwap = async () => {
-    if (!estimatedOutRaw || !address || amountInBI === 0n) return;
-    const deadline = BigInt(Math.floor(Date.now() / 1000) + 1200);
-    // 15% Slippage
-    const minOut = (estimatedOutRaw * 850n) / 1000n; 
-    
-    try {
-      const activePath = quoteData ? smartPath : fallbackPath;
-      const hash = await writeContractAsync({
-        address: ROUTER_ADDRESS,
-        abi: ROUTER_ABI,
-        functionName: "swapExactTokensForTokensSupportingFeeOnTransferTokens",
-        args: [amountInBI, minOut, [...activePath], address, deadline],
-      });
-      setTxHash(hash);
-    } catch (err) { 
-      console.error("Swap Error:", err); 
-    }
-  };
+  const pancakeSwapLink = `https://pancakeswap.finance/swap?inputCurrency=${USDT_ADDRESS}&outputCurrency=${KDIA_ADDRESS}&chainId=56`;
 
   return (
-    <div className="glass-card p-6 space-y-6">
-      <div className="flex justify-between items-center border-b border-red-500/10 pb-4">
+    <div className="glass-card p-6 space-y-6 animate-in fade-in duration-500">
+      {/* HEADER SECTION */}
+      <div className="flex justify-between items-center border-b border-white/10 pb-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tighter text-white font-['Orbitron']">SWAP HUB</h2>
+          <h2 className="text-xl font-bold tracking-tighter text-white font-['Orbitron'] uppercase">Market Data</h2>
           <div className="flex items-center gap-2 mt-1">
-            <span className="live-indicator"></span>
-            <p className="text-[10px] font-medium text-red-500/80 uppercase">1 KDIA ≈ {kdiaPriceUSDT} USDT</p>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <p className="text-[10px] font-bold text-green-500/80 uppercase tracking-widest">Live Oracle Price</p>
           </div>
         </div>
-        <button onClick={() => { setIsBuy(!isBuy); setAmountIn(""); }} className="btn-outline text-[10px] px-4 py-2 rounded-lg">
-          {isBuy ? "SELL KDIA" : "BUY KDIA"}
-        </button>
+        <TrendingUp className="text-white/20 w-8 h-8" />
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
-        <BalanceChip label="USDT" val={usdtData?.formatted} />
-        <BalanceChip label="KDIA" val={kdiaData?.formatted} neon />
-      </div>
-
-      <div className="space-y-3">
-        <div className="panel">
-          <p className="panel-title">{isBuy ? "Pay USDT" : "Pay KDIA"}</p>
-          <input
-            type="number"
-            value={amountIn}
-            onChange={(e) => setAmountIn(e.target.value)}
-            placeholder="0.00"
-            className="w-full bg-transparent text-3xl font-bold outline-none text-white mt-2 font-['Inter']"
-          />
-        </div>
-
-        <div className="panel bg-white/[0.02]">
-          <p className="panel-title">Receive (Est.)</p>
-          <p className={`text-3xl font-bold mt-2 ${estimatedOut !== "0.000000" ? "text-white" : "text-gray-600"}`}>
-            {estimatedOut}
-          </p>
+      {/* PRICE DISPLAY */}
+      <div className="panel py-8 bg-gradient-to-br from-white/[0.05] to-transparent border-white/10">
+        <p className="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">
+          KDIA / USDT
+        </p>
+        <div className="flex items-center justify-center gap-3">
+          <span className="text-4xl md:text-5xl font-black text-white font-['Inter'] tracking-tighter">
+            ${kdiaPriceUSDT}
+          </span>
         </div>
       </div>
 
-      <TokenApprovalGuard tokenAddress={tokenIn} spenderAddress={ROUTER_ADDRESS} amountRequired={amountIn || "0"}>
-        <button 
-          onClick={handleSwap} 
-          disabled={amountInBI === 0n || estimatedOut === "0.000000" || isPending || isConfirming} 
-          className="btn"
-        >
-          {isPending || isConfirming ? "PROCESSING..." : isBuy ? "CONFIRM PURCHASE" : "CONFIRM LIQUIDATION"}
-        </button>
-      </TokenApprovalGuard>
+      {/* INFO FOOTER */}
+      <div className="bg-blue-500/5 rounded-xl p-4 border border-blue-500/10">
+        <p className="text-[11px] text-blue-200/70 leading-relaxed text-center font-medium">
+          Swap functionality is handled via the official PancakeSwap Liquidity Pool to ensure 
+          the best price execution and lowest slippage.
+        </p>
+      </div>
 
+      {/* EXTERNAL TRADE LINK */}
       <div className="pt-2">
         <a 
-          href={getPancakeSwapLink()} 
+          href={pancakeSwapLink} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="block w-full text-center py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all text-[11px] font-bold tracking-widest text-gray-400 hover:text-white uppercase"
+          className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-white text-black hover:bg-gray-200 transition-all font-bold text-[12px] tracking-[0.1em] shadow-xl active:scale-[0.98]"
         >
-          Trade on PancakeSwap ↗
+          TRADE ON PANCAKESWAP
+          <ExternalLink size={16} />
         </a>
       </div>
-
-      <TxStatus hash={txHash} />
-    </div>
-  );
-}
-
-function BalanceChip({ label, val, neon }: { label: string; val?: string; neon?: boolean }) {
-  return (
-    <div className="panel p-3">
-      <p className="text-[9px] text-gray-500 uppercase font-bold tracking-widest">{label} Balance</p>
-      <p className={`text-lg font-semibold mt-1 ${neon ? "text-neon" : "text-white"}`}>
-        {Number(val || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-      </p>
     </div>
   );
 }

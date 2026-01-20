@@ -1,5 +1,5 @@
 import { FileText, Flame, Coins, ShieldCheck, Zap } from "lucide-react";
-import HeartPaper from "../assets/Kardia.pdf";
+import HeartPaper from "src/assets/Kardia.pdf?url";
 
 export default function Tokenomics() {
   return (
@@ -33,6 +33,22 @@ export default function Tokenomics() {
           </h3>
         </div>
 
+        <div className="space-y-5">
+          {/* PASSIVE LOGIC */}
+          <div className="flex gap-4">
+            <div className="bg-blue-100 p-3 rounded-xl h-fit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <p className="text-xs font-bold text-sky-950 uppercase tracking-wider mb-1">Passive Emission (LP Sync)</p>
+              <p className="text-[11px] text-sky-900/70 leading-relaxed font-medium">
+                Every deposit triggers a corresponding mint for the <span className="font-bold text-sky-900">Liquidity Pool</span>. 
+                Additionally, an <span className="text-orange-600 font-bold">extra 10%</span> is minted directly to the Reward Pool to sustain the ecosystem.
+              </p>
+            </div>
+          </div>
+
+        
         <div className="space-y-4">
           <div className="flex gap-4">
             <div className="bg-orange-100 p-3 rounded-xl h-fit">
@@ -41,7 +57,7 @@ export default function Tokenomics() {
             <div>
               <p className="text-xs font-bold text-sky-950 uppercase tracking-wider mb-1">Active Burn</p>
               <p className="text-[11px] text-sky-900/70 leading-relaxed font-medium">
-                Whenever active minting is triggered by a user, a portion of the protocol supply is permanently 
+                Whenever active minting is triggered by a user, a portion of the protocol supply is bought from market and permanently 
                 incinerated, increasing scarcity as the ecosystem grows.
               </p>
             </div>
@@ -87,7 +103,7 @@ export default function Tokenomics() {
           className="flex items-center gap-2 px-6 py-3 rounded-full bg-sky-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-sky-950 transition-all shadow-lg active:scale-95"
         >
           <FileText size={14} />
-          Read Kardia HeartPaper
+          Download Kardia HeartPaper
         </a>
       </div>
 

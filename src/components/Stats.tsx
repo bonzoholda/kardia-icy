@@ -94,31 +94,32 @@ export default function Stats() {
 
   return (
     <div className="space-y-4">
-      {/* Power & Staked Metrics - Using Orange Panels for visibility */}
+      {/* Power & Staked Metrics */}
       <div className="grid grid-cols-2 gap-4">
         <div className="panel p-5">
-          <p className="panel-title text-white/80">Active Power Units</p>
-          <p className="text-2xl font-bold text-white mt-1 font-['Inter']">{fmt(uPU)}</p>
+          <p className="panel-title text-slate-800/70">Active Power Units</p>
+          <p className="text-2xl font-bold text-slate-900 mt-1 font-['Inter']">{fmt(uPU)}</p>
         </div>
         <div className="panel p-5">
-          <p className="panel-title text-white/80">Staked Balance</p>
-          <p className="text-2xl font-bold text-white mt-1 font-['Inter']">{fmt(uStaked)}</p>
+          <p className="panel-title text-slate-800/70">Staked Balance</p>
+          <p className="text-2xl font-bold text-slate-900 mt-1 font-['Inter']">{fmt(uStaked)}</p>
         </div>
       </div>
 
-      {/* Reward Pool Card - The focal point */}
+      {/* Reward Pool Card */}
       <div className="panel p-5 border-white/20">
         <div className="flex justify-between items-start">
           <div>
-            <p className="panel-title text-white/70">Accumulated Rewards</p>
+            <p className="panel-title text-slate-800/70">Accumulated Rewards</p>
             <div className="flex items-baseline gap-2 mt-1">
-              <p className="text-3xl font-bold text-white font-['Inter']">
+              <p className="text-3xl font-bold text-slate-900 font-['Inter']">
                 {fmt(((uPU ?? 0n) * (gAcc ?? 0n) / BigInt(1e18)) - (uDebt ?? 0n), 18, 8)}
               </p>
-              <span className="text-[10px] text-white/60 font-bold tracking-widest uppercase font-['Orbitron']">KDIA</span>
+              <span className="text-[10px] text-slate-800/60 font-bold tracking-widest uppercase font-['Orbitron']">KDIA</span>
             </div>
           </div>
-          <div className="live-indicator !bg-white !shadow-[0_0_8px_white]"></div>
+          {/* Changed indicator to sky color to stand out from orange but maintain blue contrast */}
+          <div className="live-indicator !bg-sky-500 !shadow-[0_0_8px_#0ea5e9]"></div>
         </div>
       </div>
 
@@ -127,7 +128,7 @@ export default function Stats() {
         <div className="flex justify-between items-center pb-4 border-b border-white/10">
           <div>
             <p className="panel-title text-sky-800/60">Vault Security Status</p>
-            <p className={`text-sm font-bold mt-1 font-['Orbitron'] tracking-wider ${lockInfo.locked ? "text-[#f7931a]" : "text-sky-900"}`}>
+            <p className={`text-sm font-bold mt-1 font-['Orbitron'] tracking-wider ${lockInfo.locked ? "text-orange-600" : "text-sky-900"}`}>
               {hasStake ? lockInfo.status : "READY FOR STAKING"}
             </p>
           </div>
@@ -141,18 +142,18 @@ export default function Stats() {
         {hasStake && lockInfo.ready && (
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
             <div className="panel relative group border-white/30">
-              <p className="panel-title text-white/80">Amount to Withdraw</p>
+              <p className="panel-title text-slate-800/70">Amount to Withdraw</p>
               <div className="flex items-center mt-2">
                 <input
                   type="number"
-                  className="w-full bg-transparent text-2xl font-bold outline-none text-white placeholder:text-white/20"
+                  className="w-full bg-transparent text-2xl font-bold outline-none text-slate-900 placeholder:text-slate-900/20"
                   placeholder="0.00"
                   value={unstakeAmount}
                   onChange={(e) => setUnstakeAmount(e.target.value)}
                 />
                 <button
                   onClick={handleMax}
-                  className="ml-2 px-3 py-1 text-[10px] font-black bg-white/20 hover:bg-white/40 text-white border border-white/30 rounded-md transition-all"
+                  className="ml-2 px-3 py-1 text-[10px] font-black bg-slate-900/5 hover:bg-slate-900/10 text-slate-900 border border-slate-900/20 rounded-md transition-all"
                 >
                   MAX
                 </button>

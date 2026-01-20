@@ -93,19 +93,6 @@ export default function Tokenomics() {
         </div>
       </div>
 
-      {/* 4. DOCUMENTATION LINK - UPDATED */}
-      <div className="flex justify-center pt-4">
-        <a 
-          href="/Kardia.pdf" // Direct path to the file in the public folder
-          download="Kardia_HeartPaper.pdf" // Forces download behavior
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 rounded-full bg-sky-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-sky-950 transition-all shadow-lg active:scale-95"
-        >
-          <FileText size={14} />
-          Download Kardia HeartPaper
-        </a>
-      </div>
 
     </div>
   );

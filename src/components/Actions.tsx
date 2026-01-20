@@ -112,7 +112,7 @@ export function Actions() {
       {/* 1. ACQUIRE POWER */}
       <div className="panel p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h4 className="panel-title font-['Orbitron'] text-slate-900">Acquire Power</h4>
+          <h4 className="panel-title font-['Orbitron'] text-slate-900 !mb-0">Acquire Power</h4>
           <div className="text-right">
             <span className="text-[9px] text-slate-800/60 uppercase font-bold tracking-widest block">USDT Balance</span>
             <span className="text-xs font-mono text-slate-900 font-bold">
@@ -120,13 +120,18 @@ export function Actions() {
             </span>
           </div>
         </div>
-        <input 
-          className="input h-14 bg-white/40 border-slate-900/10 text-slate-900 placeholder:text-slate-900/40" 
-          type="number" 
-          placeholder="USDT Amount" 
-          value={puAmount} 
-          onChange={(e) => setPuAmount(e.target.value)} 
-        />
+        
+        {/* FIXED: Added w-full and px-4 to ensure no overflow */}
+        <div className="relative w-full">
+          <input 
+            className="w-full h-14 bg-white/40 border border-slate-900/10 rounded-xl px-4 text-slate-900 placeholder:text-slate-900/40 outline-none focus:border-slate-900/30 transition-all font-bold" 
+            type="number" 
+            placeholder="0.00" 
+            value={puAmount} 
+            onChange={(e) => setPuAmount(e.target.value)} 
+          />
+        </div>
+
         <button className="btn h-14" disabled={!puAmount || isBroadcasting} onClick={handleAcquirePU}>
           {statusMsg || "Acquire Power Units"}
         </button>
@@ -136,7 +141,7 @@ export function Actions() {
       {/* 2. STAKE KDIA */}
       <div className="panel p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h4 className="panel-title font-['Orbitron'] text-slate-900">Stake $KDIA</h4>
+          <h4 className="panel-title font-['Orbitron'] text-slate-900 !mb-0">Stake $KDIA</h4>
           <div className="text-right">
             <span className="text-[9px] text-slate-800/60 uppercase font-bold tracking-widest block">Available KDIA</span>
             <span className="text-xs font-mono text-slate-900 font-bold">
@@ -144,13 +149,18 @@ export function Actions() {
             </span>
           </div>
         </div>
-        <input 
-          className="input h-14 bg-white/40 border-slate-900/10 text-slate-900 placeholder:text-slate-900/40" 
-          type="number" 
-          placeholder="KDIA Amount" 
-          value={stakeAmount} 
-          onChange={(e) => setStakeAmount(e.target.value)} 
-        />
+
+        {/* FIXED: Added w-full and px-4 to ensure no overflow */}
+        <div className="relative w-full">
+          <input 
+            className="w-full h-14 bg-white/40 border border-slate-900/10 rounded-xl px-4 text-slate-900 placeholder:text-slate-900/40 outline-none focus:border-slate-900/30 transition-all font-bold" 
+            type="number" 
+            placeholder="0.00" 
+            value={stakeAmount} 
+            onChange={(e) => setStakeAmount(e.target.value)} 
+          />
+        </div>
+
         <button className="btn h-14 w-full" disabled={!stakeAmount || stakeSMOS.isPending} onClick={handleStake}>
           {stakeSMOS.isPending ? "STAKING..." : "Stake KDIA"}
         </button>

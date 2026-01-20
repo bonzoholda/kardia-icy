@@ -65,29 +65,29 @@ body {
 
 .panel {
   @apply rounded-2xl p-5 transition-all;
-  /* CHANGED: Orange-tinted glassmorphism */
+  /* Orange-tinted glassmorphism */
   background: linear-gradient(
     135deg,
-    rgba(247, 147, 26, 0.25) 0%, /* Bitcoin Orange at 25% */
+    rgba(247, 147, 26, 0.25) 0%, 
     rgba(247, 147, 26, 0.1) 100%
   );
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(247, 147, 26, 0.3);
+  /* Slightly darker border for better definition */
+  border: 1px solid rgba(247, 147, 26, 0.4);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
 }
 
 .panel-title {
   @apply text-[10px] uppercase tracking-[0.3em] font-bold mb-1;
-  /* CHANGED: Soft white/peach for title readability */
-  color: rgba(255, 255, 255, 0.8);
+  /* CHANGED: Deep Slate Blue for title readability */
+  color: #1e293b; 
 }
 
 .panel-value {
   @apply text-2xl font-semibold tracking-tight;
-  /* CHANGED: Solid white for best readability on orange tint */
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* CHANGED: Dark Navy Blue for maximum contrast on light orange */
+  color: #0f172a; 
 }
 
 /* ============================================================

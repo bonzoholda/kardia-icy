@@ -20,7 +20,7 @@ export default function Tokenomics() {
           <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-800/70 mb-1 font-['Orbitron']">
             Max Supply
           </p>
-          <p className="text-2xl font-bold text-slate-900 font-['Inter']">11,000,000</p>
+          <p className="text-2xl font-bold text-slate-900 font-['Inter']">11 M</p>
           <p className="text-[9px] font-black text-slate-800/40 uppercase tracking-widest mt-1">KDIA</p>
         </div>
         

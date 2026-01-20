@@ -4,28 +4,28 @@
 
 /* ============================================================
    GLOBAL THEME & TYPOGRAPHY
-   Modified for: Icy Frost & Winter Tech
 ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap');
 
 :root {
-  --kardia-icy: #e0f2fe; /* Light blue-white */
-  --kardia-glow: rgba(186, 230, 253, 0.5); /* Frosty glow */
+  --kardia-icy: #e0f2fe;
+  --kardia-glow: rgba(186, 230, 253, 0.5);
   --glass-bg: rgba(255, 255, 255, 0.15);
+  /* NEW: Bitcoin Brand Colors */
+  --bitcoin-orange: #f7931a;
+  --bitcoin-glow: rgba(247, 147, 26, 0.4);
 }
 
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  /* Soft winter blue base */
   background-color: #f0f9ff; 
-  color: #0f172a; /* Deep slate for readability on light backgrounds */
+  color: #0f172a; 
   -webkit-font-smoothing: antialiased;
   
-  /* Icy Mountain Aesthetic Background */
   background-image: 
-    linear-gradient(to bottom, rgba(240, 249, 255, 0.8), rgba(240, 249, 255, 0.4)),
-    url('./assets/dappbg.png'); /* Points to your local file */
+    linear-gradient(to bottom, rgba(240, 249, 255, 0.7), rgba(240, 249, 255, 0.3)),
+    url('./assets/dappbg.png');
   
   background-size: cover;
   background-position: center;
@@ -33,15 +33,9 @@ body {
   background-repeat: no-repeat; 
 }
 
-/* This ensures the React/Vue root container doesn't have its own background */
 #root, #__next {
   background: transparent !important;
   min-height: 100vh;
-}
-
-/* Telegram Mobile Overrides */
-body.telegram-mobile w3m-button, w3m-button {
-  display: none !important;
 }
 
 /* ============================================================
@@ -50,164 +44,85 @@ body.telegram-mobile w3m-button, w3m-button {
 
 .glass-card {
   position: relative;
-  /* Frosted glass effect with white tint */
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
-  
-  /* High-end icy blur */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%);
   backdrop-filter: blur(15px) saturate(120%);
   -webkit-backdrop-filter: blur(15px) saturate(120%);
-  
-  /* Crystal-like border */
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 1.5rem;
-  
-  /* Soft shadow: Focus on white "frost" glow rather than dark depth */
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.05),            
-    inset 0 1px 2px rgba(255, 255, 255, 0.8), 
-    inset 0 0 15px rgba(255, 255, 255, 0.2);   
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);   
     
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
-.glass-card:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  border-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 
-    0 0 30px rgba(255, 255, 255, 0.4),
-    0 20px 40px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
 /* ============================================================
-   BUTTONS (POLISHED ICE FINISH)
+   BUTTONS (POLISHED ICE WITH ORANGE TEXT)
 ============================================================ */
 
 .btn {
   @apply w-full py-4 rounded-xl font-bold transition-all duration-300 uppercase tracking-widest text-sm;
-  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-  color: #0369a1; /* Deep icy blue */
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  /* Changed to Bitcoin Orange for the main action text */
+  color: var(--bitcoin-orange); 
+  border: 1px solid rgba(247, 147, 26, 0.3);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-  transition: 0.5s;
-}
-
-.btn:hover::before {
-  left: 100%;
+  box-shadow: 0 4px 12px rgba(247, 147, 26, 0.1);
 }
 
 .btn:hover {
-  border-color: #bae6fd;
-  color: #0284c7;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  border-color: var(--bitcoin-orange);
+  color: #e88300; /* Slightly darker orange on hover */
+  box-shadow: 0 0 20px var(--bitcoin-glow);
   transform: translateY(-1px);
 }
 
-.btn-outline {
-  @apply bg-transparent;
-  border: 1px solid rgba(14, 165, 233, 0.3);
-  color: #0369a1;
-}
-
 /* ============================================================
-   INPUTS & FORMS
-============================================================ */
-
-.input {
-  @apply w-full rounded-xl px-4 py-4 outline-none transition-all duration-300 font-medium;
-  background: rgba(255, 255, 255, 0.4);
-  color: #0f172a;
-  border: 1px solid rgba(14, 165, 233, 0.1);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-
-.input:focus {
-  border-color: #0ea5e9;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 0 15px rgba(14, 165, 233, 0.1);
-}
-
-/* ============================================================
-   UTILITIES & EFFECTS
+   UTILITIES & EFFECTS (THE ORANGE GLOW)
 ============================================================ */
 
 .text-neon {
-  color: #0284c7; /* Sky blue neon */
-  text-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+  /* Changed text-neon from blue to Bitcoin Orange */
+  color: var(--bitcoin-orange);
+  text-shadow: 0 0 10px var(--bitcoin-glow);
 }
 
-/* Frosty Grid */
-.bg-grid {
-  background-image: 
-    linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Panel Design */
 .panel {
-  @apply rounded-2xl bg-white/30 backdrop-blur-md border border-white/40 p-5 transition-all;
+  @apply rounded-2xl bg-white/40 backdrop-blur-md border border-white/60 p-5 transition-all;
 }
 
 .panel-title {
-  @apply text-[10px] uppercase tracking-[0.3em] text-sky-700/60 font-bold mb-1;
+  @apply text-[10px] uppercase tracking-[0.3em] text-sky-700/70 font-bold mb-1;
 }
 
 .panel-value {
-  @apply text-2xl font-semibold tracking-tight text-sky-900;
+  /* Panel values now use Bitcoin Orange to stand out as key data */
+  @apply text-2xl font-semibold tracking-tight;
+  color: var(--bitcoin-orange);
 }
 
-/* Snowfall/Pulse animation for "Live" data */
-@keyframes snowPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.2); }
-}
+/* Live indicator remains sky blue to balance the colors */
 .live-indicator {
   @apply w-2 h-2 rounded-full bg-sky-400;
   animation: snowPulse 2s infinite;
   box-shadow: 0 0 8px #0ea5e9;
 }
 
+@keyframes snowPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+
 /* ===============================
-   NEON PULSE GLOW (ICY HEART THEME)
+   NEON PULSE GLOW (ICY HEART)
 ================================ */
 
 @keyframes glowPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-}
-
-.pulse-glow {
-  position: relative;
+  0% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.4; }
 }
 
 .pulse-glow::before {
@@ -215,10 +130,11 @@ body.telegram-mobile w3m-button, w3m-button {
   position: absolute;
   inset: -16px;
   border-radius: 9999px;
+  /* Kept this blue so the Logo sits on a "Cold" base while text is "Hot" orange */
   background: radial-gradient(
     circle,
-    rgba(224, 242, 254, 0.8) 0%,   /* sky-100 */
-    rgba(186, 230, 253, 0.4) 35%,  /* sky-200 */
+    rgba(224, 242, 254, 0.8) 0%,   
+    rgba(186, 230, 253, 0.4) 35%,  
     transparent 70%
   );
   filter: blur(20px);

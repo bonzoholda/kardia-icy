@@ -67,7 +67,8 @@ export default function App() {
   };
 
   return (   
-    <div className="min-h-screen bg-black bg-grid p-4 pb-24 md:p-6 relative">
+    /* CHANGED: Removed bg-black to allow index.css background to show */
+    <div className="min-h-screen bg-transparent bg-grid p-4 pb-24 md:p-6 relative">
       
       {/* ───── HOME LOGO NAVIGATION ───── */}
       <div className="fixed top-4 left-4 z-[100] md:top-6 md:left-6">
@@ -75,9 +76,10 @@ export default function App() {
           href="https://kardiatoken.wordpress.com/" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 rounded-xl bg-red-950/40 border border-red-500/30 backdrop-blur-md hover:scale-110 active:scale-95 transition-all duration-300 shadow-[0_0_15px_rgba(220,38,38,0.2)]"
+          /* CHANGED: Swapped red-950/red-500 for sky/white icy theme */
+          className="flex items-center justify-center w-10 h-10 rounded-xl bg-sky-100/40 border border-white/50 backdrop-blur-md hover:scale-110 active:scale-95 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.3)]"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
         </a>
@@ -95,13 +97,14 @@ export default function App() {
 
       <div className="max-w-md mx-auto space-y-6">
         {/* ───── TAB NAVIGATION ───── */}
-        <div className="flex bg-red-950/20 p-1 rounded-xl border border-red-500/20 shadow-inner backdrop-blur-md">
+        {/* CHANGED: Background from red-950 to sky-100/blue-white */}
+        <div className="flex bg-sky-100/20 p-1 rounded-xl border border-white/40 shadow-inner backdrop-blur-md">
           <button
             onClick={() => toggleTab("mining")}
             className={`flex-1 py-3 rounded-lg text-xs font-bold font-['Orbitron'] tracking-widest transition-all duration-300 ${
               activeTab === "mining" 
-                ? "bg-gradient-to-r from-red-600 to-red-500 text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]" 
-                : "text-red-500/40 hover:text-red-400 hover:bg-red-500/5"
+                ? "bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-[0_0_20px_rgba(14,165,233,0.3)]" 
+                : "text-sky-700/60 hover:text-sky-600 hover:bg-white/10"
             }`}
           >
             MINING HUB
@@ -110,8 +113,8 @@ export default function App() {
             onClick={() => toggleTab("trade")}
             className={`flex-1 py-3 rounded-lg text-xs font-bold font-['Orbitron'] tracking-widest transition-all duration-300 ${
               activeTab === "trade" 
-                ? "bg-gradient-to-r from-red-600 to-red-500 text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]" 
-                : "text-red-500/40 hover:text-red-400 hover:bg-red-500/5"
+                ? "bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-[0_0_20px_rgba(14,165,233,0.3)]" 
+                : "text-sky-700/60 hover:text-sky-600 hover:bg-white/10"
             }`}
           >
             TRADE KDIA
@@ -121,7 +124,7 @@ export default function App() {
         {/* ───── Content Rendering ───── */}
         {activeTab === "mining" ? (
           <div className="glass-card p-6 space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <h3 className="text-center text-sm text-slate-400">
+            <h3 className="text-center text-sm text-sky-800/70">
               The Heartbeat of Perpetual DeFi
             </h3>
 
@@ -138,7 +141,8 @@ export default function App() {
             <Stats />
             <DripStats />
 
-            <hr className="border-red-500/10" />
+            {/* CHANGED: Border color to match icy theme */}
+            <hr className="border-sky-500/10" />
 
             {CONTROLLER_ADDRESS && (
               <TokenApprovalGuard 
@@ -168,9 +172,11 @@ export default function App() {
 
 function Stat({ label, value, decimals }: { label: string; value?: bigint; decimals: number; }) {
   return (
-    <div className="rounded-xl bg-black/70 border border-red-500/20 p-3 text-center">
-      <div className="text-xs text-red-500/70 font-bold uppercase tracking-tighter">{label}</div>
-      <div className="mt-1 text-base font-semibold text-white">
+    /* CHANGED: From bg-black/70 to a frosty bg-white/40 */
+    <div className="rounded-xl bg-white/40 border border-white/50 backdrop-blur-sm p-3 text-center">
+      {/* CHANGED: Text color to sky blue */}
+      <div className="text-xs text-sky-600 font-bold uppercase tracking-tighter">{label}</div>
+      <div className="mt-1 text-base font-semibold text-sky-900">
         {value !== undefined ? fmt(value, decimals, 2) : "—"}
       </div>
     </div>

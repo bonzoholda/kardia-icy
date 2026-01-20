@@ -94,45 +94,45 @@ export default function Stats() {
 
   return (
     <div className="space-y-4">
-      {/* Power & Staked Metrics */}
+      {/* Power & Staked Metrics - Using Orange Panels for visibility */}
       <div className="grid grid-cols-2 gap-4">
-        <div className="glass-card p-5">
-          <p className="panel-title">Active Power Units</p>
+        <div className="panel p-5">
+          <p className="panel-title text-white/80">Active Power Units</p>
           <p className="text-2xl font-bold text-white mt-1 font-['Inter']">{fmt(uPU)}</p>
         </div>
-        <div className="glass-card p-5">
-          <p className="panel-title">Staked Balance</p>
-          <p className="text-2xl font-bold text-neon mt-1 font-['Inter']">{fmt(uStaked)}</p>
+        <div className="panel p-5">
+          <p className="panel-title text-white/80">Staked Balance</p>
+          <p className="text-2xl font-bold text-white mt-1 font-['Inter']">{fmt(uStaked)}</p>
         </div>
       </div>
 
-      {/* Reward Pool Card */}
-      <div className="glass-card p-5 border-l-2 border-red-500/40">
+      {/* Reward Pool Card - The focal point */}
+      <div className="panel p-5 border-white/20">
         <div className="flex justify-between items-start">
           <div>
-            <p className="panel-title text-red-500/80">Accumulated Rewards</p>
+            <p className="panel-title text-white/70">Accumulated Rewards</p>
             <div className="flex items-baseline gap-2 mt-1">
               <p className="text-3xl font-bold text-white font-['Inter']">
                 {fmt(((uPU ?? 0n) * (gAcc ?? 0n) / BigInt(1e18)) - (uDebt ?? 0n), 18, 8)}
               </p>
-              <span className="text-[10px] text-red-500/60 font-bold tracking-widest uppercase">KDIA</span>
+              <span className="text-[10px] text-white/60 font-bold tracking-widest uppercase font-['Orbitron']">KDIA</span>
             </div>
           </div>
-          <div className="live-indicator"></div>
+          <div className="live-indicator !bg-white !shadow-[0_0_8px_white]"></div>
         </div>
       </div>
 
       {/* Unstake Vault Logic */}
       <div className="glass-card p-5 space-y-5">
-        <div className="flex justify-between items-center pb-4 border-b border-white/5">
+        <div className="flex justify-between items-center pb-4 border-b border-white/10">
           <div>
-            <p className="panel-title">Vault Security Status</p>
-            <p className={`text-sm font-bold mt-1 font-['Orbitron'] tracking-wider ${lockInfo.locked ? "text-red-500" : "text-white"}`}>
+            <p className="panel-title text-sky-800/60">Vault Security Status</p>
+            <p className={`text-sm font-bold mt-1 font-['Orbitron'] tracking-wider ${lockInfo.locked ? "text-[#f7931a]" : "text-sky-900"}`}>
               {hasStake ? lockInfo.status : "READY FOR STAKING"}
             </p>
           </div>
           {lockInfo.locked && (
-            <span className="text-[9px] bg-red-500/10 border border-red-500/30 text-red-500 px-3 py-1 rounded-full font-black tracking-widest uppercase">
+            <span className="text-[9px] bg-[#f7931a]/10 border border-[#f7931a]/30 text-[#f7931a] px-3 py-1 rounded-full font-black tracking-widest uppercase">
               7D COOLDOWN
             </span>
           )}
@@ -140,19 +140,19 @@ export default function Stats() {
 
         {hasStake && lockInfo.ready && (
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-            <div className="panel relative group">
-              <p className="panel-title">Amount to Withdraw</p>
+            <div className="panel relative group border-white/30">
+              <p className="panel-title text-white/80">Amount to Withdraw</p>
               <div className="flex items-center mt-2">
                 <input
                   type="number"
-                  className="w-full bg-transparent text-2xl font-bold outline-none text-white placeholder:text-white/5"
+                  className="w-full bg-transparent text-2xl font-bold outline-none text-white placeholder:text-white/20"
                   placeholder="0.00"
                   value={unstakeAmount}
                   onChange={(e) => setUnstakeAmount(e.target.value)}
                 />
                 <button
                   onClick={handleMax}
-                  className="ml-2 px-3 py-1 text-[10px] font-black bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 rounded-md transition-all"
+                  className="ml-2 px-3 py-1 text-[10px] font-black bg-white/20 hover:bg-white/40 text-white border border-white/30 rounded-md transition-all"
                 >
                   MAX
                 </button>
@@ -170,8 +170,8 @@ export default function Stats() {
         )}
 
         {writeError && (
-          <div className="p-3 bg-red-500/5 border border-red-500/20 rounded-xl">
-            <p className="text-red-500 text-[10px] font-bold uppercase tracking-tighter">
+          <div className="p-3 bg-[#f7931a]/5 border border-[#f7931a]/20 rounded-xl">
+            <p className="text-[#f7931a] text-[10px] font-bold uppercase tracking-tighter">
               ERR: {(writeError as any).shortMessage || "Action Restricted"}
             </p>
           </div>

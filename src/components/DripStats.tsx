@@ -26,41 +26,43 @@ export default function DripStats() {
 
   return (
     <div className="glass-card p-6 space-y-4 relative overflow-hidden">
-      {/* Background Accent for Drip feel */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 blur-[50px] rounded-full -mr-16 -mt-16 pointer-events-none" />
+      {/* Background Accent: Changed from red to Bitcoin Orange glow */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-[#f7931a]/10 blur-[50px] rounded-full -mr-16 -mt-16 pointer-events-none" />
 
       <div className="flex items-center gap-2 mb-2">
-        <div className="live-indicator"></div>
-        <h3 className="text-sm font-bold tracking-[0.2em] text-white font-['Orbitron'] uppercase">
+        {/* White shadow on indicator for better visibility on light bg */}
+        <div className="live-indicator !bg-white !shadow-[0_0_8px_white]"></div>
+        <h3 className="text-sm font-bold tracking-[0.2em] text-sky-900 font-['Orbitron'] uppercase">
           Emission Protocol
         </h3>
       </div>
 
       <div className="grid grid-cols-1 gap-4">
-        <div className="panel bg-gradient-to-br from-red-500/5 to-transparent border-red-500/20">
-          <p className="panel-title text-red-500/60">KDIA Drip / 24H</p>
+        {/* Panel: Now uses the orange-glass class from index.css */}
+        <div className="panel border-white/20">
+          <p className="panel-title text-white/80">KDIA Drip / 24H</p>
           <div className="flex items-baseline gap-2 mt-2">
             <p className="text-3xl font-bold text-white font-['Inter']">
               {dripPerDay > 0n ? fmt(dripPerDay, 18, 4) : "SYNCING..."}
             </p>
-            <span className="text-xs font-black text-red-500/40 font-['Orbitron']">KDIA</span>
+            <span className="text-xs font-black text-white/50 font-['Orbitron']">KDIA</span>
           </div>
         </div>
       </div>
 
-      {/* ───── Explanation Panel ───── */}
-      <div className="p-4 rounded-xl bg-black/40 border border-white/5">
-        <p className="text-[11px] text-gray-400 leading-relaxed font-medium">
-          The <span className="text-red-500/80">Reward Pool</span> releases KDIA linearly into the Miners Pool. 
-          Rewards are claimable via the <span className="text-white">Mining System</span> and allocated 
-          proportionally based on your current <span className="text-white">Power Unit (PU)</span> share.
+      {/* ───── Explanation Panel: Frosted glass instead of heavy black ───── */}
+      <div className="p-4 rounded-xl bg-white/30 border border-white/40 backdrop-blur-sm">
+        <p className="text-[11px] text-sky-950 leading-relaxed font-medium">
+          The <span className="text-[#f7931a] font-bold">Reward Pool</span> releases KDIA linearly into the Miners Pool. 
+          Rewards are claimable via the <span className="font-bold">Mining System</span> and allocated 
+          proportionally based on your current <span className="font-bold">Power Unit (PU)</span> share.
         </p>
       </div>
 
-      {/* Mini Secondary Stat for Real-time feel */}
+      {/* Mini Secondary Stat */}
       <div className="flex justify-between items-center px-1">
-        <span className="text-[9px] uppercase tracking-widest text-gray-600 font-bold">Network Velocity</span>
-        <span className="text-[10px] font-mono text-red-500/60 italic">
+        <span className="text-[9px] uppercase tracking-widest text-sky-800/60 font-bold">Network Velocity</span>
+        <span className="text-[10px] font-mono text-[#f7931a] font-bold italic">
           {dripRatePerSecond ? fmt(dripRatePerSecond, 18, 8) : "0.00"} /sec
         </span>
       </div>

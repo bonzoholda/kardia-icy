@@ -4,27 +4,30 @@
 
 /* ============================================================
    GLOBAL THEME & TYPOGRAPHY
-   Futuristic, clean, and high-readability
+   Modified for: Icy Frost & Winter Tech
 ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap');
 
 :root {
-  --kardia-red: #ff3131;
-  --kardia-red-glow: rgba(255, 49, 49, 0.4);
-  --glass-bg: rgba(10, 2, 2, 0.65);
+  --kardia-icy: #e0f2fe; /* Light blue-white */
+  --kardia-glow: rgba(186, 230, 253, 0.5); /* Frosty glow */
+  --glass-bg: rgba(255, 255, 255, 0.15);
 }
 
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #030000;
-  color: #f8fafc;
+  /* Soft winter blue base */
+  background-color: #f0f9ff; 
+  color: #0f172a; /* Deep slate for readability on light backgrounds */
   -webkit-font-smoothing: antialiased;
-  /* High-end radial depth */
+  
+  /* Icy Mountain Aesthetic Background */
   background-image: 
-    radial-gradient(circle at 50% -20%, rgba(255, 49, 49, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 0% 100%, rgba(255, 49, 49, 0.05) 0%, transparent 40%),
-    linear-gradient(to bottom, #050000, #000000);
+    linear-gradient(to bottom, rgba(240, 249, 255, 0.8), rgba(240, 249, 255, 0.4)),
+    url('https://images.unsplash.com/photo-1491002052546-bf38f186af56?auto=format&fit=crop&q=80&w=2000');
+  background-size: cover;
+  background-position: center;
   background-attachment: fixed;
 }
 
@@ -34,31 +37,31 @@ body.telegram-mobile w3m-button, w3m-button {
 }
 
 /* ============================================================
-   FUTURISTIC COMPONENTS (REDDISH GLASSMORPISM)
+   FUTURISTIC COMPONENTS (ICY GLASSMORPISM)
 ============================================================ */
 
 .glass-card {
   position: relative;
-  /* Lighter, tinted background with a slight top-to-bottom gradient */
+  /* Frosted glass effect with white tint */
   background: linear-gradient(
     135deg,
-    rgba(40, 10, 10, 0.4) 0%,
-    rgba(20, 5, 5, 0.6) 100%
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 100%
   );
   
-  /* High-end glass effects */
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  /* High-end icy blur */
+  backdrop-filter: blur(15px) saturate(120%);
+  -webkit-backdrop-filter: blur(15px) saturate(120%);
   
-  /* Defined reddish border */
-  border: 1px solid rgba(255, 49, 49, 0.25);
+  /* Crystal-like border */
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 1.5rem;
   
-  /* Complex shadow: Outer depth + Inner rim light + Inner red glow */
+  /* Soft shadow: Focus on white "frost" glow rather than dark depth */
   box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.6),            /* Deep drop shadow */
-    inset 0 1px 2px rgba(255, 255, 255, 0.1), /* Top "rim" light */
-    inset 0 0 15px rgba(255, 49, 49, 0.05);   /* Internal soft red hue */
+    0 15px 35px rgba(0, 0, 0, 0.05),            
+    inset 0 1px 2px rgba(255, 255, 255, 0.8), 
+    inset 0 0 15px rgba(255, 255, 255, 0.2);   
     
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
@@ -67,28 +70,28 @@ body.telegram-mobile w3m-button, w3m-button {
 .glass-card:hover {
   background: linear-gradient(
     135deg,
-    rgba(60, 15, 15, 0.45) 0%,
-    rgba(30, 8, 8, 0.65) 100%
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.2) 100%
   );
-  border-color: rgba(255, 49, 49, 0.45);
+  border-color: rgba(255, 255, 255, 0.8);
   box-shadow: 
-    0 0 40px rgba(255, 49, 49, 0.15),
-    0 25px 50px rgba(0, 0, 0, 0.8),
-    inset 0 1px 3px rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px); /* Subtle lift on hover */
+    0 0 30px rgba(255, 255, 255, 0.4),
+    0 20px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 /* ============================================================
-   BUTTONS (SLEEK TECH FINISH)
+   BUTTONS (POLISHED ICE FINISH)
 ============================================================ */
 
 .btn {
   @apply w-full py-4 rounded-xl font-bold transition-all duration-300 uppercase tracking-widest text-sm;
-  background: linear-gradient(135deg, #1a0202 0%, #000000 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 49, 49, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  color: #0369a1; /* Deep icy blue */
+  border: 1px solid rgba(255, 255, 255, 0.8);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .btn::before {
@@ -96,7 +99,7 @@ body.telegram-mobile w3m-button, w3m-button {
   position: absolute;
   top: 0; left: -100%;
   width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 49, 49, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
   transition: 0.5s;
 }
 
@@ -105,17 +108,16 @@ body.telegram-mobile w3m-button, w3m-button {
 }
 
 .btn:hover {
-  border-color: var(--kardia-red);
-  box-shadow: 0 0 20px var(--kardia-red-glow);
+  border-color: #bae6fd;
+  color: #0284c7;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
   transform: translateY(-1px);
 }
 
-.btn:active { transform: scale(0.98); }
-
 .btn-outline {
   @apply bg-transparent;
-  border: 1px solid rgba(255, 49, 49, 0.5);
-  color: var(--kardia-red);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  color: #0369a1;
 }
 
 /* ============================================================
@@ -124,16 +126,16 @@ body.telegram-mobile w3m-button, w3m-button {
 
 .input {
   @apply w-full rounded-xl px-4 py-4 outline-none transition-all duration-300 font-medium;
-  background: rgba(20, 5, 5, 0.4);
-  color: #fff;
-  border: 1px solid rgba(255, 49, 49, 0.1);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.4);
+  color: #0f172a;
+  border: 1px solid rgba(14, 165, 233, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .input:focus {
-  border-color: var(--kardia-red);
-  background: rgba(30, 5, 5, 0.6);
-  box-shadow: 0 0 15px rgba(255, 49, 49, 0.15);
+  border-color: #0ea5e9;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.1);
 }
 
 /* ============================================================
@@ -141,57 +143,58 @@ body.telegram-mobile w3m-button, w3m-button {
 ============================================================ */
 
 .text-neon {
-  color: var(--kardia-red);
-  text-shadow: 0 0 12px rgba(255, 49, 49, 0.5);
+  color: #0284c7; /* Sky blue neon */
+  text-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
 }
 
-/* Futuristic Grid */
+/* Frosty Grid */
 .bg-grid {
   background-image: 
-    linear-gradient(rgba(255, 49, 49, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 49, 49, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 /* Panel Design */
 .panel {
-  @apply rounded-2xl bg-black/40 backdrop-blur-md border border-red-500/10 p-5 transition-all;
+  @apply rounded-2xl bg-white/30 backdrop-blur-md border border-white/40 p-5 transition-all;
 }
 
 .panel-title {
-  @apply text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold mb-1;
+  @apply text-[10px] uppercase tracking-[0.3em] text-sky-700/60 font-bold mb-1;
 }
 
 .panel-value {
-  @apply text-2xl font-semibold tracking-tight text-white;
+  @apply text-2xl font-semibold tracking-tight text-sky-900;
 }
 
-/* Heartbeat animation for "Live" data */
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+/* Snowfall/Pulse animation for "Live" data */
+@keyframes snowPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
 }
 .live-indicator {
-  @apply w-2 h-2 rounded-full bg-red-500;
-  animation: pulse 2s infinite;
+  @apply w-2 h-2 rounded-full bg-sky-400;
+  animation: snowPulse 2s infinite;
+  box-shadow: 0 0 8px #0ea5e9;
 }
 
 /* ===============================
-   NEON PULSE GLOW (RED HEART THEME)
+   NEON PULSE GLOW (ICY HEART THEME)
 ================================ */
 
 @keyframes glowPulse {
   0% {
     transform: scale(1);
-    opacity: 0.35;
+    opacity: 0.4;
   }
   50% {
-    transform: scale(1.12);
-    opacity: 0.75; /* Slightly increased for better red visibility */
+    transform: scale(1.15);
+    opacity: 0.8;
   }
   100% {
     transform: scale(1);
-    opacity: 0.35;
+    opacity: 0.4;
   }
 }
 
@@ -206,11 +209,11 @@ body.telegram-mobile w3m-button, w3m-button {
   border-radius: 9999px;
   background: radial-gradient(
     circle,
-    rgba(220, 38, 38, 0.7) 0%,   /* tailwind red-600 */
-    rgba(185, 28, 28, 0.35) 35%, /* tailwind red-700 */
+    rgba(224, 242, 254, 0.8) 0%,   /* sky-100 */
+    rgba(186, 230, 253, 0.4) 35%,  /* sky-200 */
     transparent 70%
   );
-  filter: blur(18px); /* Increased blur slightly for a softer, more "organic" heart glow */
-  animation: glowPulse 3s ease-in-out infinite;
+  filter: blur(20px);
+  animation: glowPulse 4s ease-in-out infinite;
   z-index: 0;
 }

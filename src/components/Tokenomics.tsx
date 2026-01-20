@@ -14,32 +14,32 @@ export default function Tokenomics() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       
-      {/* 1. KEY METRICS GRID */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="panel p-5 text-center">
-          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-800/70 mb-1 font-['Orbitron']">
+      {/* 1. KEY METRICS (Single Column Layout for Mobile optimization) */}
+      <div className="space-y-4">
+        <div className="panel p-5 text-center bg-white/40 border-white/60">
+          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sky-900/70 mb-1 font-['Orbitron']">
             Max Supply
           </p>
-          <p className="text-2xl font-bold text-slate-900 font-['Inter']">11 M</p>
-          <p className="text-[9px] font-black text-slate-800/40 uppercase tracking-widest mt-1">KDIA</p>
+          <p className="text-2xl font-bold text-sky-950 font-['Inter']">11,000,000</p>
+          <p className="text-[9px] font-black text-sky-900/40 uppercase tracking-widest mt-1">KDIA</p>
         </div>
         
-        <div className="panel p-5 text-center">
-          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-800/70 mb-1 font-['Orbitron']">
+        <div className="panel p-5 text-center bg-white/40 border-white/60">
+          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sky-900/70 mb-1 font-['Orbitron']">
             Protocol Type
           </p>
-          <p className="text-lg font-bold text-slate-900 font-['Inter'] mt-1">Deflationary</p>
-          <p className="text-[9px] font-black text-slate-800/40 uppercase tracking-widest mt-1">Community Driven</p>
+          <p className="text-lg font-bold text-sky-950 font-['Inter'] mt-1">Deflationary</p>
+          <p className="text-[9px] font-black text-sky-900/40 uppercase tracking-widest mt-1">Community Driven</p>
         </div>
       </div>
 
       {/* 2. CONTRACT ADDRESS BOX */}
       <div className="panel p-4 bg-white/40 border-white/60 backdrop-blur-sm">
-        <p className="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-800/60 mb-3 font-['Orbitron'] text-center">
+        <p className="text-[9px] uppercase tracking-[0.2em] font-bold text-sky-900/60 mb-3 font-['Orbitron'] text-center">
           KDIA Contract Address
         </p>
         <div className="flex items-center justify-between bg-white/50 rounded-lg p-3 border border-sky-900/10">
-          <code className="text-[11px] font-mono text-slate-900 break-all">
+          <code className="text-[11px] font-mono text-sky-950 break-all">
             {`${CONTRACT_ADDRESS.slice(0, 10)}...${CONTRACT_ADDRESS.slice(-8)}`}
           </code>
           <button 
@@ -87,7 +87,7 @@ export default function Tokenomics() {
             <div>
               <p className="text-xs font-bold text-sky-950 uppercase tracking-wider mb-1">Active Burn</p>
               <p className="text-[11px] text-sky-900/70 leading-relaxed font-medium">
-                When active minting is triggered, protocol supply is bought and <span className="font-bold">incinerated</span>, increasing scarcity.
+                When active minting is triggered, protocol supply is bought and <span className="font-bold text-sky-900">incinerated</span>, increasing scarcity.
               </p>
             </div>
           </div>
@@ -106,15 +106,15 @@ export default function Tokenomics() {
         </div>
       </div>
 
-      {/* 3. SECURITY & TRUST */}
-      <div className="panel p-6 border-white/20">
+      {/* 4. SECURITY & TRUST */}
+      <div className="panel p-6 border-white/20 bg-white/40">
         <div className="flex items-start gap-4">
-          <ShieldCheck className="text-slate-900 w-8 h-8" />
+          <ShieldCheck className="text-sky-950 w-8 h-8" />
           <div>
-            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-800/70 mb-1 font-['Orbitron']">
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sky-900/70 mb-1 font-['Orbitron']">
               Governance
             </p>
-            <p className="text-xs text-slate-900 font-medium leading-relaxed">
+            <p className="text-xs text-sky-950 font-medium leading-relaxed">
               Kardia is a fair-launch protocol. 100K initial minting for project development and community (to be released after total minted supply reaches 1M). No venture capital. The 99.09% supply 
               is distributed linearly through the Mining Hub to all community based on their respective Power Units.
             </p>

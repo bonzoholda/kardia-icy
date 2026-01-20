@@ -68,7 +68,7 @@ export default function App() {
 
   return (   
     /* CHANGED: Removed bg-black to allow index.css background to show */
-    <div className="min-h-screen bg-transparent bg-grid p-4 pb-24 md:p-6 relative">
+    <div className="min-h-screen bg-transparent p-4 pb-24 md:p-6 relative">
       
       {/* ───── HOME LOGO NAVIGATION ───── */}
       <div className="fixed top-4 left-4 z-[100] md:top-6 md:left-6">

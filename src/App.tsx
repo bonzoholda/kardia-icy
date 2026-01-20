@@ -7,7 +7,7 @@ import DripStats from "./components/DripStats";
 import { fmt } from "./utils/format";
 import Logo from "./assets/kdialogo.png";
 import Tokenomics from "./components/Tokenomics";
-import { SwapTrading } from "./components/SwapTrading"; // Added Import
+import { SwapTrading } from "./components/SwapTrading";
 
 // Web3 & Telegram Imports
 import { useAccount } from "wagmi";
@@ -25,11 +25,9 @@ export default function App() {
   const { minersPool, rewardPool, totalPU } = useController();
   const [activeTab, setActiveTab] = useState<"mining" | "tokenomics">("mining");
   
-  // Web3 Hooks
   const { isConnected } = useAccount();
   const { open } = useWeb3Modal();
 
-  // Optimized Telegram Detection
   const tg = useMemo(() => {
     const telegramApp = (window as any).Telegram?.WebApp;
     return telegramApp?.platform !== 'unknown' ? telegramApp : null;
@@ -94,24 +92,24 @@ export default function App() {
       </div>
 
       <div className="max-w-md mx-auto space-y-6">
-        {/* ───── TAB NAVIGATION ───── */}
-        <div className="flex bg-white/20 p-1 rounded-xl border border-white/40 shadow-inner backdrop-blur-md">
+        {/* ───── TAB NAVIGATION (Premium White Style) ───── */}
+        <div className="flex bg-white/20 p-1.5 rounded-2xl border border-white/40 shadow-inner backdrop-blur-md">
           <button
             onClick={() => toggleTab("mining")}
-            className={`flex-1 py-3 rounded-lg text-xs font-bold font-['Orbitron'] tracking-widest transition-all duration-300 ${
+            className={`flex-1 py-3 rounded-xl text-[10px] font-bold font-['Orbitron'] tracking-widest transition-all duration-300 active:scale-95 ${
               activeTab === "mining" 
-                ? "bg-gradient-to-r from-[#f7931a] to-[#e88300] text-white shadow-[0_0_15px_rgba(247,147,26,0.4)]" 
-                : "text-sky-900/40 hover:text-sky-900 hover:bg-white/10"
+                ? "bg-white text-black shadow-lg border border-white/60" 
+                : "text-sky-900/60 hover:text-sky-900 hover:bg-white/10"
             }`}
           >
             MINING HUB
           </button>
           <button
             onClick={() => toggleTab("tokenomics")}
-            className={`flex-1 py-3 rounded-lg text-xs font-bold font-['Orbitron'] tracking-widest transition-all duration-300 ${
+            className={`flex-1 py-3 rounded-xl text-[10px] font-bold font-['Orbitron'] tracking-widest transition-all duration-300 active:scale-95 ${
               activeTab === "tokenomics" 
-                ? "bg-gradient-to-r from-[#f7931a] to-[#e88300] text-white shadow-[0_0_15px_rgba(247,147,26,0.4)]" 
-                : "text-sky-900/40 hover:text-sky-900 hover:bg-white/10"
+                ? "bg-white text-black shadow-lg border border-white/60" 
+                : "text-sky-900/60 hover:text-sky-900 hover:bg-white/10"
             }`}
           >
             TOKENOMICS
@@ -121,12 +119,12 @@ export default function App() {
         {/* ───── CONTENT RENDERING ───── */}
         {activeTab === "mining" ? (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {/* MINING STATS CARD */}
             <div className="glass-card p-6 space-y-6">
               <h3 className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-sky-800/40 font-['Orbitron']">
                 Perpetual Emission Protocol
               </h3>
 
+              {/* Connect Wallet Button usually inherits styles from its component */}
               <div className="flex justify-center">
                 <ConnectWallet />
               </div>
@@ -161,7 +159,6 @@ export default function App() {
               )}
             </div>
 
-            {/* SWAP HUB COMPONENT (Placed outside the glass-card for better visual separation or inside if preferred) */}
             <SwapTrading />
           </div>
         ) : (
@@ -172,9 +169,6 @@ export default function App() {
   );
 }
 
-/**
- * ───── FIXED STAT COMPONENT ─────
- */
 function Stat({ label, value, decimals }: { label: string; value?: bigint; decimals: number; }) {
   return (
     <div className="panel p-3 text-center border-white/20">

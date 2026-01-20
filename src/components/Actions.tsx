@@ -101,7 +101,7 @@ export function Actions() {
   };
 
   if (!address) return (
-    <div className="glass-card p-10 text-center font-bold text-white uppercase text-[10px] tracking-widest font-['Orbitron']">
+    <div className="glass-card p-10 text-center font-bold text-sky-900 uppercase text-[10px] tracking-widest font-['Orbitron']">
       Connect Wallet
     </div>
   );
@@ -112,16 +112,21 @@ export function Actions() {
       {/* 1. ACQUIRE POWER */}
       <div className="panel p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h4 className="panel-title font-['Orbitron'] text-white">Acquire Power</h4>
+          <h4 className="panel-title font-['Orbitron'] text-slate-900">Acquire Power</h4>
           <div className="text-right">
-            <span className="text-[9px] text-white/80 uppercase font-bold tracking-widest block">USDT Balance</span>
-            {/* White font for balance on orange card */}
-            <span className="text-xs font-mono text-white font-bold">
+            <span className="text-[9px] text-slate-800/60 uppercase font-bold tracking-widest block">USDT Balance</span>
+            <span className="text-xs font-mono text-slate-900 font-bold">
               {usdtBalance ? Number(usdtBalance.formatted).toLocaleString('en-US', { minimumFractionDigits: 2 }) : "0.00"}
             </span>
           </div>
         </div>
-        <input className="input h-14 bg-white/20 border-white/30 text-white placeholder:text-white/50" type="number" placeholder="USDT Amount" value={puAmount} onChange={(e) => setPuAmount(e.target.value)} />
+        <input 
+          className="input h-14 bg-white/40 border-slate-900/10 text-slate-900 placeholder:text-slate-900/40" 
+          type="number" 
+          placeholder="USDT Amount" 
+          value={puAmount} 
+          onChange={(e) => setPuAmount(e.target.value)} 
+        />
         <button className="btn h-14" disabled={!puAmount || isBroadcasting} onClick={handleAcquirePU}>
           {statusMsg || "Acquire Power Units"}
         </button>
@@ -131,16 +136,21 @@ export function Actions() {
       {/* 2. STAKE KDIA */}
       <div className="panel p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <h4 className="panel-title font-['Orbitron'] text-white">Stake $KDIA</h4>
+          <h4 className="panel-title font-['Orbitron'] text-slate-900">Stake $KDIA</h4>
           <div className="text-right">
-            <span className="text-[9px] text-white/80 uppercase font-bold tracking-widest block">Available KDIA</span>
-            {/* White font for balance on orange card */}
-            <span className="text-xs font-mono text-white font-bold">
+            <span className="text-[9px] text-slate-800/60 uppercase font-bold tracking-widest block">Available KDIA</span>
+            <span className="text-xs font-mono text-slate-900 font-bold">
               {kdiaBalance ? Number(kdiaBalance.formatted).toLocaleString('en-US', { minimumFractionDigits: 2 }) : "0.00"}
             </span>
           </div>
         </div>
-        <input className="input h-14 bg-white/20 border-white/30 text-white placeholder:text-white/50" type="number" placeholder="KDIA Amount" value={stakeAmount} onChange={(e) => setStakeAmount(e.target.value)} />
+        <input 
+          className="input h-14 bg-white/40 border-slate-900/10 text-slate-900 placeholder:text-slate-900/40" 
+          type="number" 
+          placeholder="KDIA Amount" 
+          value={stakeAmount} 
+          onChange={(e) => setStakeAmount(e.target.value)} 
+        />
         <button className="btn h-14 w-full" disabled={!stakeAmount || stakeSMOS.isPending} onClick={handleStake}>
           {stakeSMOS.isPending ? "STAKING..." : "Stake KDIA"}
         </button>

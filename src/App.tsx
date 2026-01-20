@@ -90,7 +90,7 @@ export default function App() {
           <img
             src={Logo}
             alt="Kardia-Token"
-            className="relative z-10 mx-auto w-full max-w-[180px] h-auto"
+            className="relative z-10 mx-auto w-full max-w-[100px] h-auto"
           />
         </div>
       </div>

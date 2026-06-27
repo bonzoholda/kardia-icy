@@ -152,10 +152,10 @@ body {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 15px 5px rgba(56, 189, 248, 0.4); /* Warna biru muda */
+    box-shadow: 0 0 15px 5px rgba(30, 64, 175, 0.3); /* Warna biru muda */
   }
   50% {
-    box-shadow: 0 0 30px 15px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 0 30px 15px rgba(30, 64, 175, 0.1);
   }
 }
 

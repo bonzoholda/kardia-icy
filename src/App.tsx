@@ -81,15 +81,18 @@ export default function App() {
         </a>
       </div>
 
-      <div className="flex justify-center mb-8">
-        <div className="pulse-glow">
-          <img
-            src={Logo}
-            alt="Kardia-Token"
-            className="relative z-10 mx-auto w-full max-w-[180px] h-auto"
-          />
-        </div>
+    <div className="flex justify-center mb-8">
+      <div className="relative">
+        {/* Elemen ini berfungsi sebagai sumber glow */}
+        <div className="absolute inset-0 bg-sky-500 rounded-full blur-2xl pulse-glow-effect"></div>
+        
+        <img
+          src={Logo}
+          alt="Kardia-Token"
+          className="relative z-10 mx-auto w-full max-w-[180px] h-auto"
+        />
       </div>
+    </div>
 
       <div className="max-w-md mx-auto space-y-6">
         {/* ───── TAB NAVIGATION (Premium White Style) ───── */}

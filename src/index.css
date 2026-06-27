@@ -153,10 +153,10 @@ body {
 @keyframes pulse-glow {
   0%, 100% {
     /* Menggunakan Steel Icy */
-    box-shadow: 0 0 15px 5px rgba(150, 165, 180, 0.4); 
+    box-shadow: 0 0 15px 5px rgba(220, 225, 230, 0.5); 
   }
   50% {
-    box-shadow: 0 0 30px 15px rgba(150, 165, 180, 0.1);
+    box-shadow: 0 0 30px 15px rgba(220, 225, 230, 0.2);
   }
 }
 

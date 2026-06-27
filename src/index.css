@@ -150,6 +150,20 @@ body {
    NEON PULSE GLOW (ICY HEART)
 ================================ */
 
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px 5px rgba(56, 189, 248, 0.4); /* Warna biru muda */
+  }
+  50% {
+    box-shadow: 0 0 30px 15px rgba(56, 189, 248, 0.2);
+  }
+}
+
+.pulse-glow-effect {
+  animation: pulse-glow 2.5s infinite ease-in-out;
+}   
+
+   
 @keyframes glowPulse {
   0% { transform: scale(1); opacity: 0.4; }
   50% { transform: scale(1.15); opacity: 0.8; }

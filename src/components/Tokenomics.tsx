@@ -109,7 +109,7 @@ export default function Tokenomics() {
       {/* 4. SECURITY & TRUST */}
       <div className="panel p-6 border-white/20 bg-white/40">
         <div className="flex items-start gap-4">
-          <ShieldCheck className="text-sky-950 w-8 h-8" />
+          <ShieldCheck className="text-sky-950 w-8 h-8 flex-shrink-0" />
           <div>
             <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sky-900/70 mb-1 font-['Orbitron']">
               Governance

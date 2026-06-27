@@ -124,31 +124,39 @@ export default function Tokenomics() {
 
       <div className="panel p-6 border-white/20 bg-white/40">
         <div className="flex items-start gap-4">
-          <ShieldCheck className="text-sky-950 w-8 h-8" />
+          <ShieldCheck className="text-sky-950 w-8 h-8 flex-shrink-0" />
           <div>
-            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sky-900/70 mb-1 font-['Orbitron']">
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sky-900/70 mb-3 font-['Orbitron']">
               Introducing K-Treasury: The Engine of Sustainable Value
             </p>
-            <p className="text-xs text-sky-950 font-medium leading-relaxed">
+            <p className="text-xs text-sky-950 font-medium leading-relaxed mb-4">
               The KardiaToken Treasury is an autonomous, self-sustaining protocol designed to transition the token from a standard asset to a BTCB-backed reserve store. It transforms transaction volume into tangible value through a three-tier automated system:
             </p>
-
-            <p className="text-xs text-sky-950 font-medium leading-relaxed">
-              Automated BTCB Accumulation: Every transaction triggers our smart contract engine to acquire BTCB. 90% of this BTCB is paired with KDIA to deepen liquidity, while 10% is permanently locked in the Treasury vault. This constant inflow of "hard" assets ensures that the underlying backing of every KDIA token grows with every trade.
-            </p>            
-
-            <p className="text-xs text-sky-950 font-medium leading-relaxed">
-              Dynamic Floor Price: The Treasury continuously monitors a real-time floorPrice—the ratio of our total BTCB reserves to the circulating supply. This provides a transparent, mathematical guarantee of value, creating a "Bitcoin-Vacuum" effect that prevents long-term devaluation.
-            </p> 
-
-            <p className="text-xs text-sky-950 font-medium leading-relaxed">
-              Deflationary Redemption: Our initiateBurn mechanism protects holders by allowing them to redeem KDIA directly for BTCB if the market price deviates significantly from the floor. By burning the redeemed KDIA, we permanently reduce the circulating supply, mathematically increasing the intrinsic value of every remaining token.
-            </p> 
-            
+      
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2 text-xs text-sky-950 leading-relaxed">
+                <CheckCircle2 className="w-4 h-4 text-sky-700 flex-shrink-0 mt-0.5" />
+                <p>
+                  <strong className="font-bold">Automated BTCB Accumulation:</strong> Every transaction triggers our smart contract engine to acquire BTCB. 90% of this BTCB is paired with KDIA to deepen liquidity, while 10% is permanently locked in the Treasury vault. This constant inflow of "hard" assets ensures that the underlying backing of every KDIA token grows with every trade.
+                </p>
+              </li>
+              <li className="flex items-start gap-2 text-xs text-sky-950 leading-relaxed">
+                <CheckCircle2 className="w-4 h-4 text-sky-700 flex-shrink-0 mt-0.5" />
+                <p>
+                  <strong className="font-bold">Dynamic Floor Price:</strong> The Treasury continuously monitors a real-time floorPrice—the ratio of our total BTCB reserves to the circulating supply. This provides a transparent, mathematical guarantee of value, creating a "Bitcoin-Vacuum" effect that prevents long-term devaluation.
+                </p>
+              </li>
+              <li className="flex items-start gap-2 text-xs text-sky-950 leading-relaxed">
+                <CheckCircle2 className="w-4 h-4 text-sky-700 flex-shrink-0 mt-0.5" />
+                <p>
+                  <strong className="font-bold">Deflationary Redemption:</strong> Our initiateBurn mechanism protects holders by allowing them to redeem KDIA directly for BTCB if the market price deviates significantly from the floor. By burning the redeemed KDIA, we permanently reduce the circulating supply, mathematically increasing the intrinsic value of every remaining token.
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      
+            
       
     </div>
   );

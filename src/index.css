@@ -152,12 +152,11 @@ body {
 
 @keyframes pulse-glow {
   0%, 100% {
-    /* Menggunakan Frosty Cyan */
-    box-shadow: 0 0 15px 5px rgba(6, 182, 212, 0.4); 
+    /* Menggunakan Steel Icy */
+    box-shadow: 0 0 15px 5px rgba(150, 165, 180, 0.4); 
   }
   50% {
-    /* Warna lebih pudar saat pulse */
-    box-shadow: 0 0 30px 15px rgba(6, 182, 212, 0.2);
+    box-shadow: 0 0 30px 15px rgba(150, 165, 180, 0.1);
   }
 }
 

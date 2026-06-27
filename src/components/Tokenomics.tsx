@@ -122,7 +122,11 @@ export default function Tokenomics() {
         </div>
       </div>
 
-      <div className="panel p-6 border-white/20 bg-white/40">
+      <div className="panel p-6 border-white/20 bg-white/40 relative overflow-hidden">
+        {/* Banner Coming Soon */}
+        <div className="absolute top-0 right-0 bg-sky-900 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg shadow-lg z-10 uppercase tracking-widest">
+          Coming Soon
+        </div>
         <div className="flex items-start gap-4">
           <ShieldCheck className="text-sky-950 w-8 h-8 flex-shrink-0" />
           <div>

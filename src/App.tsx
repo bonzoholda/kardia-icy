@@ -121,7 +121,7 @@ export default function App() {
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="glass-card p-6 space-y-6">
               <h3 className="text-center text-[10px] font-bold uppercase tracking-[0.2em] text-sky-800/40 font-['Orbitron']">
-                Perpetual Emission Protocol
+                KardiaToken Emission Protocol
               </h3>
 
               {/* Connect Wallet Button usually inherits styles from its component */}

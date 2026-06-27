@@ -84,7 +84,7 @@ export default function App() {
     <div className="flex justify-center mb-8">
       <div className="relative">
         {/* Elemen ini berfungsi sebagai sumber glow */}
-        <div className="absolute inset-0 bg-sky-500 rounded-full blur-2xl pulse-glow-effect"></div>
+        <div className="absolute inset-0 bg-silver-500 rounded-full blur-2xl pulse-glow-effect"></div>
         
         <img
           src={Logo}

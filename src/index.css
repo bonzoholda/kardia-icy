@@ -152,10 +152,12 @@ body {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 15px 5px rgba(30, 64, 175, 0.3); /* Warna biru muda */
+    /* Menggunakan Frosty Cyan */
+    box-shadow: 0 0 15px 5px rgba(6, 182, 212, 0.4); 
   }
   50% {
-    box-shadow: 0 0 30px 15px rgba(30, 64, 175, 0.1);
+    /* Warna lebih pudar saat pulse */
+    box-shadow: 0 0 30px 15px rgba(6, 182, 212, 0.2);
   }
 }
 

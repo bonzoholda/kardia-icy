@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FileText, Flame, Coins, ShieldCheck, Zap, Copy, Check } from "lucide-react";
+import { FileText, Flame, Coins, ShieldCheck, Zap, Copy, Check, CheckCircle2 } from "lucide-react";
 
 export default function Tokenomics() {
   const [copied, setCopied] = useState(false);

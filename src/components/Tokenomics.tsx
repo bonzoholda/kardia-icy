@@ -131,18 +131,24 @@ export default function Tokenomics() {
             </p>
             <p className="text-xs text-sky-950 font-medium leading-relaxed">
               The KardiaToken Treasury is an autonomous, self-sustaining protocol designed to transition the token from a standard asset to a BTCB-backed reserve store. It transforms transaction volume into tangible value through a three-tier automated system:
-
-              Automated BTCB Accumulation: Every transaction triggers our smart contract engine to acquire BTCB. 90% of this BTCB is paired with KDIA to deepen liquidity, while 10% is permanently locked in the Treasury vault. This constant inflow of "hard" assets ensures that the underlying backing of every KDIA token grows with every trade.
-
-              Dynamic Floor Price: The Treasury continuously monitors a real-time floorPrice—the ratio of our total BTCB reserves to the circulating supply. This provides a transparent, mathematical guarantee of value, creating a "Bitcoin-Vacuum" effect that prevents long-term devaluation.
-
-              Deflationary Redemption: Our initiateBurn mechanism protects holders by allowing them to redeem KDIA directly for BTCB if the market price deviates significantly from the floor. By burning the redeemed KDIA, we permanently reduce the circulating supply, mathematically increasing the intrinsic value of every remaining token.
-
-              In summary: The Treasury isn't just holding liquidity; it’s an automated vault. It converts trade activity into BTCB reserves, driving the floor price upward and ensuring that the longer you hold KDIA, the more intrinsic value it carries.
             </p>
+
+            <p className="text-xs text-sky-950 font-medium leading-relaxed">
+              Automated BTCB Accumulation: Every transaction triggers our smart contract engine to acquire BTCB. 90% of this BTCB is paired with KDIA to deepen liquidity, while 10% is permanently locked in the Treasury vault. This constant inflow of "hard" assets ensures that the underlying backing of every KDIA token grows with every trade.
+            </p>            
+
+            <p className="text-xs text-sky-950 font-medium leading-relaxed">
+              Dynamic Floor Price: The Treasury continuously monitors a real-time floorPrice—the ratio of our total BTCB reserves to the circulating supply. This provides a transparent, mathematical guarantee of value, creating a "Bitcoin-Vacuum" effect that prevents long-term devaluation.
+            </p> 
+
+            <p className="text-xs text-sky-950 font-medium leading-relaxed">
+              Deflationary Redemption: Our initiateBurn mechanism protects holders by allowing them to redeem KDIA directly for BTCB if the market price deviates significantly from the floor. By burning the redeemed KDIA, we permanently reduce the circulating supply, mathematically increasing the intrinsic value of every remaining token.
+            </p> 
+            
           </div>
         </div>
       </div>
+      
       
     </div>
   );

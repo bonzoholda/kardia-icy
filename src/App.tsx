@@ -138,10 +138,10 @@ export default function App() {
               rel="noopener noreferrer"
               className="hover:text-emerald-400 transition-all duration-200 flex items-center gap-1.5 hover:translate-y-[-1px]"
             >
-              Landing Page <ExternalLink size={11} className="text-emerald-500/80" />
+              Gateway <ExternalLink size={11} className="text-emerald-500/80" />
             </a>
             <a 
-              href="https://icykardia.netlify.app/ventric" 
+              href="https://kdiaventric.netlify.app/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:text-emerald-400 transition-all duration-200 flex items-center gap-1.5 hover:translate-y-[-1px]"
@@ -177,7 +177,7 @@ export default function App() {
               <p className="text-xs text-slate-300 leading-relaxed font-medium">
                 Looking to amplify your yields? Navigate to the{" "}
                 <a 
-                  href="https://icykardia.netlify.app/ventric" 
+                  href="https://kdiaventric.netlify.app/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-amber-400 hover:text-amber-300 font-bold underline decoration-dotted transition-colors filter drop-shadow-[0_0_6px_rgba(245,158,11,0.3)]"

@@ -27,10 +27,17 @@
     "motion": "^12.23.24",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
+    "@noble/hashes": "^1.8.0",
     "viem": "^2.55.2",
     "vite": "^6.2.3",
     "vite-plugin-node-polyfills": "^0.28.0",
     "wagmi": "^3.7.2"
+  },
+  "overrides": {
+    "@noble/hashes": "^1.8.0"
+  },
+  "resolutions": {
+    "@noble/hashes": "^1.8.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

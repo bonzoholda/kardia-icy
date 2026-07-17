@@ -30,6 +30,7 @@ export default defineConfig(() => {
       target: "esnext", // Allows for modern JS features used in TMA SDK
       commonjsOptions: {
         transformMixedEsModules: true, // Crucial for bundling Wagmi + Telegram SDK
+        exclude: ["@noble/hashes/**"],
       },
     },
     optimizeDeps: {

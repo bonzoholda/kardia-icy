@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>KDIA MiningHub</title>
+    <script>
+      // Safe global polyfills for sandboxed iframe environments
+      (function() {
+        var customProps = {};
+        var safeGlobal = new Proxy({}, {
+          set: function(target, prop, value) {
+            if (typeof prop === "symbol") {
+              try {
+                window[prop] = value;
+              } catch (e) {}
+              return true;
+            }
+            try {
+              window[prop] = value;
+            } catch (e) {
+              customProps[prop] = value;
+            }
+            return true;
+          },
+          get: function(target, prop) {
+            if (prop === "global" || prop === "globalThis" || prop === "window" || prop === "self") {
+              return safeGlobal;
+            }
+            if (typeof prop === "symbol") {
+              return window[prop];
+            }
+            if (prop in customProps) {
+              return customProps[prop];
+            }
+            var value = window[prop];
+            if (typeof value === "function") {
+              try {
+                return value.bind(window);
+              } catch (e) {
+                return value;
+              }
+            }
+            return value;
+          },
+          has: function(target, prop) {
+            if (prop === "global" || prop === "globalThis" || prop === "window" || prop === "self") {
+              return true;
+            }
+            return (prop in customProps) || (prop in window);
+          }
+        });
+        window.global = safeGlobal;
+      })();
+    </script>
+  </head>
+  <body class="bg-[#0B0F19]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+  
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+      const tg = window.Telegram?.WebApp;
+      if (tg) {
+        tg.expand(); // Opens the app in full screen mode immediately
+      }
+  </script>
+</html>

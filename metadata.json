@@ -1,0 +1,6 @@
+{
+  "name": "KDIA MiningHub",
+  "description": "Premium virtual mining portal and tokenomics hub for the KDIA Ecosystem, offering highly secure minting, staking, and decentralized on-chain stats.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
